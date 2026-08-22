@@ -7,7 +7,7 @@ lang: en
 
 # If your repo is named  <username>.github.io       -> baseurl: ""
 # If your repo is named  <username>/my-course       -> baseurl: "/my-course"
-url: "https://USERNAME.github.io"
+url: "https://um-rob330.github.io"
 baseurl: ""
 
 # ---------------------------------------------------------------------------
@@ -30,7 +30,13 @@ course:
 # ---------------------------------------------------------------------------
 # Theme
 # ---------------------------------------------------------------------------
-theme: just-the-docs
+# theme: just-the-docs
+ # Build settings
+plugins:
+  - jekyll-remote-theme
+  - jekyll-last-modified-at
+
+remote_theme: pmarsceill/just-the-docs
 # If you'd rather use GitHub Pages' built-in (classic) Jekyll build instead of
 # the Actions workflow, delete the `theme:` line above and uncomment this:
 # remote_theme: just-the-docs/just-the-docs
