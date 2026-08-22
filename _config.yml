@@ -1,7 +1,7 @@
 # ---------------------------------------------------------------------------
 # Site identity  — TODO: replace the placeholders below
 # ---------------------------------------------------------------------------
-title: "CS 000: Course Title"
+title: "ROB 330: Localization, Mapping, and Navigation"
 description: "Course website: syllabus, schedule, lecture notes, and assignments."
 lang: en
 
@@ -14,18 +14,18 @@ baseurl: ""
 # Course metadata — surfaced on the home page and in page headers
 # ---------------------------------------------------------------------------
 course:
-  code: "CS 000"
-  name: "Course Title"
+  code: "ROB 330"
+  name: "Localization, Mapping, and Navigation"
   term: "Fall 2026"
-  credits: 3
-  meeting_times: "Tue/Thu 10:00–11:20"
-  location: "Building 1, Room 101"
-  instructor: "TODO Instructor Name"
-  instructor_email: "instructor@example.edu"
+  credits: 4
+  meeting_times: "Mon./Wed. 10:30AM–12:00PM"
+  location: "FMCRB 1050"
+  instructor: "Xiaoxiao Du"
+  instructor_email: "xiaodu[at]umich.edu"
   # Public Google Calendar ID for office hours (see README for how to find it).
   # Example: "c_1a2b3c4d5e@group.calendar.google.com" or "you@example.edu"
-  calendar_id: "TODO_CALENDAR_ID"
-  calendar_timezone: "America/Los_Angeles"
+  calendar_id: "c_32de078b424134de732ba1d0a9218c212fcf9b685071f1a68085d1138052fb4b@group.calendar.google.com"
+  calendar_timezone: "America/New_York"
 
 # ---------------------------------------------------------------------------
 # Theme
@@ -58,13 +58,13 @@ back_to_top_text: "Back to top"
 
 # Top-right links in the header
 aux_links:
-  "GitHub repo": "https://github.com/USERNAME/REPO"
+  "GitLab repo": "https://github.com/USERNAME/REPO"
 nav_external_links:
-  - title: "Course LMS / Canvas"
-    url: "https://example.edu/lms"
+  - title: "Course Google Drive"
+    url: "https://drive.google.com/drive/folders/1ZYIDd03sRtkSddDVlESq2QoCIzSGEajw?usp=drive_link"
     hide_icon: false
 
-footer_content: 'Course materials © 2026 TODO Instructor Name. Site built with <a href="https://jekyllrb.com">Jekyll</a> and <a href="https://just-the-docs.com">Just the Docs</a>.'
+footer_content: 'Course materials © 2026 Xiaoxiao Du. Site built with <a href="https://jekyllrb.com">Jekyll</a> and <a href="https://just-the-docs.com">Just the Docs</a>.'
 last_edit_timestamp: true
 last_edit_time_format: "%b %e %Y"
 
