@@ -1,0 +1,15 @@
+# Recurring office hours, listed as a table above the live calendar.
+# The Google Calendar embed is the source of truth for one-off changes;
+# this table is the at-a-glance version.
+
+- who: "TODO Instructor Name"
+  role: "Instructor"
+  when: "Tue 13:00 – 14:30"
+  where: "Building 1, Room 210"
+  notes: "Drop-in, no appointment needed"
+
+- who: "TODO TA Name"
+  role: "TA"
+  when: "Thu 15:00 – 17:00"
+  where: "Zoom (link on the LMS)"
+  notes: "Assignment help"

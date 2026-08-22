@@ -1,0 +1,45 @@
+{%- comment -%}
+  Responsive, theme-aware Google Calendar embed.
+
+  Usage:
+    {% include gcal.html %}
+    {% include gcal.html mode="AGENDA" height="500" %}
+
+  Params (all optional):
+    id        - calendar ID; defaults to site.course.calendar_id
+    mode      - WEEK (default) | MONTH | AGENDA
+    height    - iframe height in px (default 620)
+    title     - accessible iframe title
+
+  The calendar MUST be public: Google Calendar -> Settings -> the calendar ->
+  "Access permissions" -> check "Make available to public".
+{%- endcomment -%}
+
+{%- assign cal_id = include.id | default: site.course.calendar_id -%}
+{%- assign cal_mode = include.mode | default: "WEEK" -%}
+{%- assign cal_height = include.height | default: "620" -%}
+{%- assign cal_tz = site.course.calendar_timezone | default: "UTC" -%}
+{%- assign cal_title = include.title | default: "Office hours calendar" -%}
+
+{%- if cal_id and cal_id != "TODO_CALENDAR_ID" -%}
+<div class="gcal-embed" style="--gcal-height: {{ cal_height }}px;">
+  <iframe
+    title="{{ cal_title }}"
+    src="https://calendar.google.com/calendar/embed?src={{ cal_id | url_encode }}&ctz={{ cal_tz | url_encode }}&mode={{ cal_mode }}&showTitle=0&showPrint=0&showTabs=1&showCalendars=0&showTz=1"
+    loading="lazy"
+    frameborder="0"
+    scrolling="no"></iframe>
+</div>
+<p class="gcal-fallback">
+  Calendar not loading?
+  <a href="https://calendar.google.com/calendar/embed?src={{ cal_id | url_encode }}&ctz={{ cal_tz | url_encode }}" target="_blank" rel="noopener">Open it in a new tab</a>
+  or <a href="https://calendar.google.com/calendar/ical/{{ cal_id | url_encode }}/public/basic.ics">subscribe via iCal</a>.
+</p>
+{%- else -%}
+<div class="gcal-embed gcal-embed--placeholder" style="--gcal-height: {{ cal_height }}px;">
+  <div>
+    <strong>Google Calendar not configured yet.</strong>
+    <p>Set <code>course.calendar_id</code> in <code>_config.yml</code> to your public calendar ID, then rebuild. See <code>README.md</code> for the three-step setup.</p>
+  </div>
+</div>
+{%- endif -%}

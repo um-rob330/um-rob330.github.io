@@ -1,0 +1,289 @@
+{"0": {
+    "doc": "Home",
+    "title": "CS 000: Course Title",
+    "content": "Fall 2026 . MeetsTue/Thu 10:00–11:20 LocationBuilding 1, Room 101 Credits3 InstructorTODO Instructor Name View the schedule Office hours . ",
+    "url": "/#cs-000-course-title",
+    
+    "relUrl": "/#cs-000-course-title"
+  },"1": {
+    "doc": "Home",
+    "title": "Table of contents",
+    "content": ". | Course description | Learning objectives | Prerequisites | Textbook and materials | Grading | Course policies . | Late work | Collaboration and academic integrity | Accommodations | . | Getting help | . ",
+    "url": "/#table-of-contents",
+    
+    "relUrl": "/#table-of-contents"
+  },"2": {
+    "doc": "Home",
+    "title": "Course description",
+    "content": "TODO — one or two paragraphs describing the course: what problem it addresses, what students will be able to do by the end, and how it fits into the program. ",
+    "url": "/#course-description",
+    
+    "relUrl": "/#course-description"
+  },"3": {
+    "doc": "Home",
+    "title": "Learning objectives",
+    "content": "By the end of this course, you will be able to: . | TODO objective one | TODO objective two | TODO objective three | . ",
+    "url": "/#learning-objectives",
+    
+    "relUrl": "/#learning-objectives"
+  },"4": {
+    "doc": "Home",
+    "title": "Prerequisites",
+    "content": "TODO — required courses, and the specific skills you actually expect (e.g. “comfortable writing a 200-line Python program”, “linear algebra through eigenvectors”). ",
+    "url": "/#prerequisites",
+    
+    "relUrl": "/#prerequisites"
+  },"5": {
+    "doc": "Home",
+    "title": "Textbook and materials",
+    "content": "| Type | Title | Required? | . | Textbook | TODO Title, Author, Edition | Required | . | Reference | TODO Title | Optional | . All readings not in the textbook are linked from the schedule. ",
+    "url": "/#textbook-and-materials",
+    
+    "relUrl": "/#textbook-and-materials"
+  },"6": {
+    "doc": "Home",
+    "title": "Grading",
+    "content": "| Component | Weight | . | Assignments | 40% | . | Midterm | 20% | . | Final project | 30% | . | Participation | 10% | . | Total | 100% | . Letter grades: A ≥ 93, A− ≥ 90, B+ ≥ 87, B ≥ 83, B− ≥ 80, C+ ≥ 77, C ≥ 73, C− ≥ 70, D ≥ 60, F &lt; 60. ",
+    "url": "/#grading",
+    
+    "relUrl": "/#grading"
+  },"7": {
+    "doc": "Home",
+    "title": "Course policies",
+    "content": "Late work . TODO — e.g. “Each student has four late days for the term, usable in one-day increments on assignments. Past that, late work loses 10% per day.” . Collaboration and academic integrity . TODO — state clearly what collaboration is allowed, what must be your own work, and how AI tools may or may not be used. Work you submit must be your own. Cite every source and collaborator. When in doubt, ask before you submit — not after. Accommodations . TODO — link to your institution’s disability services office and state that students should contact you early in the term. ",
+    "url": "/#course-policies",
+    
+    "relUrl": "/#course-policies"
+  },"8": {
+    "doc": "Home",
+    "title": "Getting help",
+    "content": ". | Bring it to office hours — the fastest path. | Post on the course discussion board so classmates benefit from the answer. | Email instructor@example.edu with CS 000 in the subject line. | . ",
+    "url": "/#getting-help",
+    
+    "relUrl": "/#getting-help"
+  },"9": {
+    "doc": "Home",
+    "title": "Home",
+    "content": " ",
+    "url": "/",
+    
+    "relUrl": "/"
+  },"10": {
+    "doc": "Office Hours",
+    "title": "Office hours",
+    "content": "Come with a specific question, the code or writing you’ve already tried, and what you expected to happen. You do not need an appointment unless noted. ",
+    "url": "/office-hours/#office-hours",
+    
+    "relUrl": "/office-hours/#office-hours"
+  },"11": {
+    "doc": "Office Hours",
+    "title": "Recurring hours",
+    "content": "| Who | Role | When | Where | Notes | . | TODO Instructor Name | Instructor | Tue 13:00 – 14:30 | Building 1, Room 210 | Drop-in, no appointment needed | . | TODO TA Name | TA | Thu 15:00 – 17:00 | Zoom (link on the LMS) | Assignment help | . ",
+    "url": "/office-hours/#recurring-hours",
+    
+    "relUrl": "/office-hours/#recurring-hours"
+  },"12": {
+    "doc": "Office Hours",
+    "title": "Live calendar",
+    "content": "Cancellations, extra exam-week hours, and one-off changes appear here first. Times are shown in America/Los_Angeles. Google Calendar not configured yet. Set course.calendar_id in _config.yml to your public calendar ID, then rebuild. See README.md for the three-step setup. Subscribe . Add these hours to your own calendar so changes sync automatically: . | Google Calendar — open the calendar above, then click the + Google Calendar button in its bottom-right corner. | Apple Calendar / Outlook — subscribe to the iCal feed: https://calendar.google.com/calendar/ical/TODO_CALENDAR_ID/public/basic.ics | . The week before a deadline fills up fast. If you need a slot then, come early in the week rather than the day before. ",
+    "url": "/office-hours/#live-calendar",
+    
+    "relUrl": "/office-hours/#live-calendar"
+  },"13": {
+    "doc": "Office Hours",
+    "title": "Can’t make any of these times?",
+    "content": "Email instructor@example.edu with two or three windows that work for you and we’ll find one. ",
+    "url": "/office-hours/#cant-make-any-of-these-times",
+    
+    "relUrl": "/office-hours/#cant-make-any-of-these-times"
+  },"14": {
+    "doc": "Office Hours",
+    "title": "Office Hours",
+    "content": " ",
+    "url": "/office-hours/",
+    
+    "relUrl": "/office-hours/"
+  },"15": {
+    "doc": "Resources",
+    "title": "Resources",
+    "content": " ",
+    "url": "/resources/",
+    
+    "relUrl": "/resources/"
+  },"16": {
+    "doc": "Resources",
+    "title": "Table of contents",
+    "content": ". | Software setup | Reference material | Supplementary reading | Academic support | . ",
+    "url": "/resources/#table-of-contents",
+    
+    "relUrl": "/resources/#table-of-contents"
+  },"17": {
+    "doc": "Resources",
+    "title": "Software setup",
+    "content": "TODO — the exact versions and install steps you support, so everyone starts from the same environment. # Example python3 -m venv .venv source .venv/bin/activate pip install -r requirements.txt . ",
+    "url": "/resources/#software-setup",
+    
+    "relUrl": "/resources/#software-setup"
+  },"18": {
+    "doc": "Resources",
+    "title": "Reference material",
+    "content": "| Resource | What it’s good for | . | TODO link | TODO | . | TODO link | TODO | . ",
+    "url": "/resources/#reference-material",
+    
+    "relUrl": "/resources/#reference-material"
+  },"19": {
+    "doc": "Resources",
+    "title": "Supplementary reading",
+    "content": ". | TODO — author, title, and one line on why it’s worth your time. | . ",
+    "url": "/resources/#supplementary-reading",
+    
+    "relUrl": "/resources/#supplementary-reading"
+  },"20": {
+    "doc": "Resources",
+    "title": "Academic support",
+    "content": ". | Tutoring center — TODO link and hours | Writing center — TODO link and hours | Disability services — TODO link | Counseling and wellness — TODO link | . Asking for help early is a strategy, not a confession. Every resource on this page exists because students before you used it. ",
+    "url": "/resources/#academic-support",
+    
+    "relUrl": "/resources/#academic-support"
+  },"21": {
+    "doc": "Schedule",
+    "title": "Schedule",
+    "content": "Week-by-week topics, readings, and due dates. This table is generated from _data/schedule.yml — edit that file, not this page. The schedule is subject to change. Changes are announced in class and reflected here; this page is always the current version. | Week | Dates | Topic | Readings | Due | . | 1 | Sep 1 – Sep 5 | Course overview and motivation | Syllabus; Ch. 1 | — | . | 2 | Sep 8 – Sep 12 | TODO Topic 2 | Ch. 2 | Assignment 1 out | . | 3 | Sep 15 – Sep 19 | TODO Topic 3 | Ch. 3 | Assignment 1 due Fri 11:59pm | . | Break | Nov 24 – Nov 28 | No class — Thanksgiving break | — | — | . | Finals | Dec 8 – Dec 12 | Final project presentations | — | Final project due Dec 12 | . ",
+    "url": "/schedule/",
+    
+    "relUrl": "/schedule/"
+  },"22": {
+    "doc": "Schedule",
+    "title": "Key dates",
+    "content": "| Date | Event | . | TODO | Add/drop deadline | . | TODO | Midterm exam | . | TODO | Final project proposal due | . | TODO | Final project due | . ",
+    "url": "/schedule/#key-dates",
+    
+    "relUrl": "/schedule/#key-dates"
+  },"23": {
+    "doc": "01 — Course overview and motivation",
+    "title": "Lecture 01 — Course overview and motivation",
+    "content": "Week 1 · September 1, 2026 . ",
+    "url": "/lectures/lecture-01/#lecture-01--course-overview-and-motivation",
+    
+    "relUrl": "/lectures/lecture-01/#lecture-01--course-overview-and-motivation"
+  },"24": {
+    "doc": "01 — Course overview and motivation",
+    "title": "Table of contents",
+    "content": ". | Before class | Learning goals | Notes | Worked example | After class | Slides and recording | . ",
+    "url": "/lectures/lecture-01/#table-of-contents",
+    
+    "relUrl": "/lectures/lecture-01/#table-of-contents"
+  },"25": {
+    "doc": "01 — Course overview and motivation",
+    "title": "Before class",
+    "content": ". | Read: TODO | Skim: the syllabus | . ",
+    "url": "/lectures/lecture-01/#before-class",
+    
+    "relUrl": "/lectures/lecture-01/#before-class"
+  },"26": {
+    "doc": "01 — Course overview and motivation",
+    "title": "Learning goals",
+    "content": "By the end of this lecture you should be able to: . | TODO | TODO | . ",
+    "url": "/lectures/lecture-01/#learning-goals",
+    
+    "relUrl": "/lectures/lecture-01/#learning-goals"
+  },"27": {
+    "doc": "01 — Course overview and motivation",
+    "title": "Notes",
+    "content": "TODO — the actual lecture content. Markdown, code fences, images, and math all work. A few things this theme gives you: . Code with syntax highlighting: . def hello(name: str) -&gt; str: return f\"Hello, {name}\" . A definition-style callout: . Key idea: TODO. This is the one thing to remember from today. Images go in assets/images/ and are referenced with relative_url: . ",
+    "url": "/lectures/lecture-01/#notes",
+    
+    "relUrl": "/lectures/lecture-01/#notes"
+  },"28": {
+    "doc": "01 — Course overview and motivation",
+    "title": "Worked example",
+    "content": "TODO — one example carried all the way through, with the reasoning visible. ",
+    "url": "/lectures/lecture-01/#worked-example",
+    
+    "relUrl": "/lectures/lecture-01/#worked-example"
+  },"29": {
+    "doc": "01 — Course overview and motivation",
+    "title": "After class",
+    "content": ". | Practice problems: TODO | Optional deeper reading: TODO | . ",
+    "url": "/lectures/lecture-01/#after-class",
+    
+    "relUrl": "/lectures/lecture-01/#after-class"
+  },"30": {
+    "doc": "01 — Course overview and motivation",
+    "title": "Slides and recording",
+    "content": ". | Slides (PDF) — TODO upload | Recording: TODO link | . ",
+    "url": "/lectures/lecture-01/#slides-and-recording",
+    
+    "relUrl": "/lectures/lecture-01/#slides-and-recording"
+  },"31": {
+    "doc": "01 — Course overview and motivation",
+    "title": "01 — Course overview and motivation",
+    "content": " ",
+    "url": "/lectures/lecture-01/",
+    
+    "relUrl": "/lectures/lecture-01/"
+  },"32": {
+    "doc": "Assignment 1 — TODO Title",
+    "title": "Assignment 1 — TODO Title",
+    "content": "Open . |   |   | . | Due | Saturday, September 19, 2026 at 11:59 pm | . | Points | 100 | . | Weight | 10% of final grade | . | Submit via | TODO — LMS / GitHub Classroom / Gradescope | . Late submissions follow the late-work policy on the syllabus. ",
+    "url": "/assignments/assignment-01/",
+    
+    "relUrl": "/assignments/assignment-01/"
+  },"33": {
+    "doc": "Assignment 1 — TODO Title",
+    "title": "Table of contents",
+    "content": ". | Overview | Learning objectives assessed | Setup | Tasks . | Part 1 — TODO (40 points) | Part 2 — TODO (40 points) | Part 3 — Write-up (20 points) | . | Rubric | What to submit | Collaboration policy | . ",
+    "url": "/assignments/assignment-01/#table-of-contents",
+    
+    "relUrl": "/assignments/assignment-01/#table-of-contents"
+  },"34": {
+    "doc": "Assignment 1 — TODO Title",
+    "title": "Overview",
+    "content": "TODO — one paragraph on what this assignment asks for and why it matters. ",
+    "url": "/assignments/assignment-01/#overview",
+    
+    "relUrl": "/assignments/assignment-01/#overview"
+  },"35": {
+    "doc": "Assignment 1 — TODO Title",
+    "title": "Learning objectives assessed",
+    "content": ". | TODO objective | TODO objective | . ",
+    "url": "/assignments/assignment-01/#learning-objectives-assessed",
+    
+    "relUrl": "/assignments/assignment-01/#learning-objectives-assessed"
+  },"36": {
+    "doc": "Assignment 1 — TODO Title",
+    "title": "Setup",
+    "content": "# TODO starter code git clone https://github.com/USERNAME/assignment-01.git cd assignment-01 . ",
+    "url": "/assignments/assignment-01/#setup",
+    
+    "relUrl": "/assignments/assignment-01/#setup"
+  },"37": {
+    "doc": "Assignment 1 — TODO Title",
+    "title": "Tasks",
+    "content": "Part 1 — TODO (40 points) . TODO description. Deliverable: TODO . Part 2 — TODO (40 points) . TODO description. Deliverable: TODO . Part 3 — Write-up (20 points) . TODO — what to explain, and how long it should be. ",
+    "url": "/assignments/assignment-01/#tasks",
+    
+    "relUrl": "/assignments/assignment-01/#tasks"
+  },"38": {
+    "doc": "Assignment 1 — TODO Title",
+    "title": "Rubric",
+    "content": "| Criterion | Points | What full credit looks like | . | Correctness | 40 | TODO | . | Code quality | 20 | TODO | . | Analysis | 20 | TODO | . | Write-up clarity | 20 | TODO | . ",
+    "url": "/assignments/assignment-01/#rubric",
+    
+    "relUrl": "/assignments/assignment-01/#rubric"
+  },"39": {
+    "doc": "Assignment 1 — TODO Title",
+    "title": "What to submit",
+    "content": ". | TODO file | TODO file | README.md naming any collaborators and sources | . ",
+    "url": "/assignments/assignment-01/#what-to-submit",
+    
+    "relUrl": "/assignments/assignment-01/#what-to-submit"
+  },"40": {
+    "doc": "Assignment 1 — TODO Title",
+    "title": "Collaboration policy",
+    "content": "TODO — restate the specific rule for this assignment. See the syllabus for the general policy. ",
+    "url": "/assignments/assignment-01/#collaboration-policy",
+    
+    "relUrl": "/assignments/assignment-01/#collaboration-policy"
+  }
+}
