@@ -97,10 +97,17 @@ sass:
   silence_deprecations:
     - import
 
-theme: just-the-docs
+# theme: just-the-docs
 # If you'd rather use GitHub Pages' built-in (classic) Jekyll build instead of
 # the Actions workflow, delete the `theme:` line above and uncomment this:
 # remote_theme: just-the-docs/just-the-docs
+
+ # Build settings
+plugins:
+  - jekyll-remote-theme
+  - jekyll-last-modified-at
+
+remote_theme: pmarsceill/just-the-docs
 
 color_scheme: umich          # custom U-M maize & blue scheme (_sass/color_schemes/umich.scss)
 search_enabled: true
