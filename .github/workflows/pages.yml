@@ -1,0 +1,53 @@
+name: Build and deploy all semesters to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment; don't cancel an in-progress production run.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      # bin/build reads semesters.yml, verifies each semester's baseurl matches
+      # its directory, builds each into _site/<code>/, and writes the landing
+      # page at _site/index.html. No --baseurl override here: each semester's
+      # own _config.yml is the single source of truth for its URL prefix.
+      # Invoked as `ruby bin/build` rather than `bin/build`: files added through
+      # GitHub's web upload lose their executable bit, and a bare `bin/build`
+      # would then fail with "Permission denied". Calling ruby works either way.
+      - name: Build every semester
+        run: ruby bin/build
+        env:
+          JEKYLL_ENV: production
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

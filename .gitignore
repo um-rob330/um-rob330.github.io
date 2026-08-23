@@ -1,0 +1,16 @@
+# Build output — bin/build regenerates all of it. These patterns have no leading
+# slash, so they match at any depth (f26/_site/, w27/.jekyll-cache/, ...).
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+vendor/
+.bundle/
+
+# Left uncommitted so CI resolves fresh gems on Ruby 3.3. If you'd rather pin
+# exact versions across semesters, delete this line and commit the lock — but
+# then run `bundle lock --add-platform x86_64-linux` first, or the Actions
+# runner will reject a lock that has no entry for its platform.
+Gemfile.lock
+
+.DS_Store
