@@ -227,6 +227,7 @@ end
 course_code = course["code"] || "Course"
 course_name = course["name"] || ""
 institution = course["institution"] || ""
+repo_url = course["repo_url"].to_s
 full_title = course_name.empty? ? course_code : "#{course_code}: #{course_name}"
 catalog = (course["description_catalog"] || "").strip
 
@@ -337,7 +338,7 @@ landing = <<~HTML
 
     <footer>
       Each offering is a self-contained site.
-      Source: <a href="https://github.com/rob330/rob330.github.io">github.com/rob330/rob330.github.io</a>
+      #{repo_url.empty? ? "" : %(Source: <a href="#{h(repo_url)}">#{h(repo_url.sub(%r{\Ahttps?://}, ""))}</a>)}
     </footer>
   </main>
   </body>

@@ -7,9 +7,9 @@ Navigation — The University of Michigan). Each semester is a self-contained
 
 | Offering | URL | Source |
 |:---------|:----|:-------|
-| Fall 2026 | `rob330.github.io/f26/` | `f26/` |
+| Fall 2026 | `um-rob330.github.io/f26/` | `f26/` |
 
-The root, `rob330.github.io`, is a generated landing page listing all offerings.
+The root, `um-rob330.github.io`, is a generated landing page listing all offerings.
 Past semesters stay live and unchanged forever — rolling over to a new term adds
 a directory, it doesn't replace one.
 
@@ -88,10 +88,23 @@ To build from a term other than the current one: `--from f26`.
 
 ## First-time repo setup
 
-1. The repository must be named **`rob330.github.io`** and owned by the
-   `rob330` user or organization. That is what makes the root URL
-   `rob330.github.io`.
+1. The repository must be named **`um-rob330.github.io`** and owned by the
+   `um-rob330` user or organization. That is what makes the root URL
+   `um-rob330.github.io`.
 2. **Settings → Pages → Build and deployment → Source → GitHub Actions.**
+   This is not optional and it is the single most likely thing to be wrong.
+   If Source is left on *Deploy from a branch*, GitHub runs its **legacy Pages
+   builder** instead of `.github/workflows/pages.yml`, and the build fails with:
+
+   ```
+   The github-pages gem can't satisfy your Gemfile's dependencies.
+   ```
+
+   The legacy builder is pinned to Jekyll 3.10 via the `github-pages` gem, so it
+   cannot install the Jekyll 4 + Just the Docs versions this site needs. It also
+   treats the repo root as one Jekyll site, which would flatten the per-semester
+   structure even if the gems did resolve. Telltale signs in the failing log:
+   `github-pages v232`, `jekyll v3.10.0`, `Theme: jekyll-theme-primer`.
 3. Push to `main`. The workflow builds every semester and deploys. First run
    takes about a minute.
 
@@ -178,7 +191,7 @@ from `/f26/` rather than the domain root:
 [the schedule]({% raw %}{{ '/schedule/' | relative_url }}{% endraw %})
 ```
 
-A bare `[the schedule](/schedule/)` resolves to `rob330.github.io/schedule/` and
+A bare `[the schedule](/schedule/)` resolves to `um-rob330.github.io/schedule/` and
 404s. Same for images: `{% raw %}{{ '/assets/images/x.png' | relative_url }}{% endraw %}`.
 
 ## Local preview

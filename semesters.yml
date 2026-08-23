@@ -6,7 +6,7 @@
 # bin/build enforces both and refuses to build on a mismatch.
 #
 # `current` decides which offering gets the "current" badge on the landing page
-# at rob330.github.io and is the default source for `bin/new-semester`.
+# at um-rob330.github.io and is the default source for `bin/new-semester`.
 #
 # Use `bin/new-semester <code> "<label>"` rather than editing this by hand.
 # ---------------------------------------------------------------------------

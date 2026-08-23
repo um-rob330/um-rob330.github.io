@@ -14,12 +14,12 @@ lang: en
 # link 404s.
 # ---------------------------------------------------------------------------
 semester:
-  code: "f26"          # directory name and URL segment -> rob330.github.io/f26/
+  code: "f26"          # directory name and URL segment -> um-rob330.github.io/f26/
   label: "Fall 2026"   # displayed everywhere the term is named
   term: "Fall"
   year: 2026
 
-url: "https://rob330.github.io"
+url: "https://um-rob330.github.io"
 baseurl: "/f26"
 
 # ---------------------------------------------------------------------------
@@ -56,6 +56,10 @@ course:
   # instance, so it changes on every rollover — that is why it lives here rather
   # than being written into each page. Keep it in sync with the "Piazza" entry
   # under aux_links below.
+  # Source repository. Read by bin/build for the landing-page footer, so the org
+  # name is written once rather than duplicated into the script.
+  repo_url: "https://github.com/um-rob330/um-rob330.github.io"
+
   piazza_url: "https://piazza.com/umich/fall2026/rob330fa2026/home"
 
   # Home-page banner. Drop the file in assets/images/ and set the path here,
@@ -97,17 +101,10 @@ sass:
   silence_deprecations:
     - import
 
-# theme: just-the-docs
+theme: just-the-docs
 # If you'd rather use GitHub Pages' built-in (classic) Jekyll build instead of
 # the Actions workflow, delete the `theme:` line above and uncomment this:
 # remote_theme: just-the-docs/just-the-docs
-
- # Build settings
-plugins:
-  - jekyll-remote-theme
-  - jekyll-last-modified-at
-
-remote_theme: pmarsceill/just-the-docs
 
 color_scheme: umich          # custom U-M maize & blue scheme (_sass/color_schemes/umich.scss)
 search_enabled: true
@@ -134,7 +131,7 @@ aux_links:
   # TODO: label says GitLab but the URL is still the GitHub site repo. Replace
   # with the real GitLab URL (U-M GitLab is usually gitlab.umich.edu or
   # gitlab.eecs.umich.edu), or rename the label back to "GitHub repo".
-  "GitLab": "https://github.com/rob330/rob330.github.io"
+  "GitLab": "https://github.com/um-rob330/um-rob330.github.io"
 # Canvas moved to aux_links (header) above. Leaving it here too would put the
 # same link in the header and the sidebar on every page. Add sidebar links here
 # only for destinations that aren't already in aux_links.

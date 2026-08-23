@@ -88,7 +88,7 @@ original = config.dup
 # kind of quiet staleness this script exists to prevent.
 new_block = <<~BLOCK
   semester:
-    code: "#{code}"#{' ' * [1, 12 - code.length].max}# directory name and URL segment -> rob330.github.io/#{code}/
+    code: "#{code}"#{' ' * [1, 12 - code.length].max}# directory name and URL segment
     label: "#{label}" # displayed everywhere the term is named
     term: "#{term}"
     year: #{year}
