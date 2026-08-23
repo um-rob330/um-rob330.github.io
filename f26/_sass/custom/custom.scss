@@ -1,0 +1,393 @@
+// ---------------------------------------------------------------------------
+// Course site customizations layered on top of Just the Docs.
+// This file is auto-imported by the theme — no @import needed elsewhere.
+// ---------------------------------------------------------------------------
+
+// --- Course facts block (home page) ----------------------------------------
+.course-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem 1.5rem;
+  margin: 1.5rem 0 2rem;
+  padding: 1.25rem;
+  border: 1px solid $border-color;
+  border-radius: 6px;
+  background-color: $sidebar-color;
+
+  dl {
+    margin: 0;
+  }
+
+  dt {
+    margin: 0;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: $grey-dk-000;
+  }
+
+  dd {
+    margin: 0.15rem 0 0;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: $body-text-color;
+  }
+}
+
+// --- Google Calendar embed --------------------------------------------------
+.gcal-embed {
+  position: relative;
+  width: 100%;
+  height: var(--gcal-height, 620px);
+  margin: 1.5rem 0 0.75rem;
+  overflow: hidden;
+  border: 1px solid $border-color;
+  border-radius: 6px;
+  background-color: $body-background-color;
+
+  iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  // Shorter viewports get a shorter calendar rather than a page-dominating one.
+  @media (max-width: 50rem) {
+    height: min(var(--gcal-height, 620px), 480px);
+  }
+}
+
+.gcal-embed--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  min-height: 180px;
+  padding: 1.5rem;
+  border-style: dashed;
+  text-align: center;
+
+  p {
+    margin: 0.5rem 0 0;
+    font-size: 0.75rem;
+    color: $grey-dk-000;
+  }
+}
+
+.gcal-fallback {
+  font-size: 0.75rem;
+  color: $grey-dk-000;
+}
+
+// --- Schedule table --------------------------------------------------------
+.schedule-table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;   // wide tables scroll themselves; the page never does
+
+  table {
+    margin: 0;
+  }
+
+  th,
+  td {
+    vertical-align: top;
+  }
+
+  // Week column stays narrow and readable
+  td:first-child,
+  th:first-child {
+    width: 4.5rem;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  tr.is-break td {
+    font-style: italic;
+    color: $grey-dk-000;
+    background-color: $sidebar-color;
+  }
+}
+
+// --- Status pills for assignments ------------------------------------------
+.pill {
+  display: inline-block;
+  padding: 0.1em 0.55em;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.pill--open   { background-color: $green-000;  color: #fff; }
+.pill--soon   { background-color: $yellow-000; color: #27201b; }
+.pill--closed { background-color: $grey-lt-200; color: $grey-dk-200; }
+
+// ---------------------------------------------------------------------------
+// Classes used by the migrated checkpoint/guide content.
+//
+// These came from the previous site's stylesheet, which did not migrate with the
+// Markdown. Without definitions, `.required_for_report` rendered as ordinary
+// body text — so the single most important line on a checkpoint page looked like
+// prose. Defined here so the content reads as intended.
+// ---------------------------------------------------------------------------
+
+// Declared up here, before first use: SCSS resolves variables in source order,
+// so a `!default` further down the file would be too late for the rules below.
+// The umich color scheme sets these first; these are the fallback if the scheme
+// is ever switched.
+$um-blue: #00274c !default;
+$um-maize: #ffcb05 !default;
+
+// Marks what a student must include in their report. Deliberately loud.
+.required_for_report {
+  position: relative;
+  margin: 1.25rem 0;
+  padding: 0.9rem 1rem 0.9rem 1.1rem;
+  border: 1px solid $border-color;
+  border-left: 5px solid $um-maize;
+  border-radius: 4px;
+  background-color: $sidebar-color;
+  font-size: 0.85rem;
+
+  &::before {
+    content: "Required for report";
+    display: block;
+    margin-bottom: 0.4rem;
+    color: $um-blue;
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  // The content uses <br> lists inside these blocks; give them room to breathe.
+  br {
+    line-height: 1.9;
+  }
+}
+
+// A row of thumbnails that each link to the full-size image.
+.popup-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: flex-start;
+  margin: 1rem 0;
+
+  a {
+    display: inline-block;
+    line-height: 0;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+  }
+}
+
+// A single click-to-enlarge image link.
+.image-link {
+  display: inline-block;
+  line-height: 0;
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+  }
+
+  &:hover img,
+  &:focus-visible img {
+    border-color: $um-maize;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Home page: hero banner
+// ---------------------------------------------------------------------------
+
+// Fallbacks so this file still compiles if color_scheme is switched away from
+// "umich" (which is where these are normally defined).
+$um-blue: #00274c !default;
+$um-maize: #ffcb05 !default;
+
+.hero {
+  margin: 0 0 1.75rem;
+}
+
+// Fixed aspect ratio: the slot is sized before any image exists, so dropping in
+// the .gif later causes no layout shift.
+.hero__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 5;
+  max-height: 300px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  border-radius: 6px;
+  background-color: $um-blue;
+}
+
+.hero__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+// The still frame only takes over when the visitor asks for reduced motion.
+.hero__img--static {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__media:has(.hero__img--static) {
+    .hero__img--motion { display: none; }
+    .hero__img--static { display: block; }
+  }
+}
+
+.hero__media--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border: 2px dashed rgba($um-maize, 0.7);
+  text-align: center;
+}
+
+// Maize on navy is ~9.5:1 — safe for text, unlike maize on white.
+.hero__placeholder-text {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: $um-maize;
+
+  code {
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+    background-color: rgba(255, 255, 255, 0.14);
+    color: #fff;
+    font-size: 0.95em;
+  }
+}
+
+// Scoped under .main-content to outrank the theme's own `.main-content h1` rule.
+.main-content .hero__title {
+  margin: 0;
+  color: $um-blue;
+  font-size: 1.9rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+@media (min-width: 50rem) {
+  .main-content .hero__title {
+    font-size: 2.25rem;
+  }
+}
+
+// The H1 already carries a maize accent; suppress the scheme's generic h2 rule
+// logic here and use an explicit bar instead.
+.hero__rule {
+  width: 4.5rem;
+  height: 5px;
+  margin-top: 0.7rem;
+  border-radius: 3px;
+  background-color: $um-maize;
+}
+
+.hero__lede {
+  max-width: 46rem;   // ~75 characters — comfortable reading measure
+  margin-top: 1.1rem;
+}
+
+// ---------------------------------------------------------------------------
+// Home page: course staff cards
+// ---------------------------------------------------------------------------
+
+.staff-section {
+  margin-bottom: 2rem;
+}
+
+.staff-section__heading {
+  margin-bottom: 0.9rem !important;
+  font-size: 1rem !important;
+}
+
+.staff-grid {
+  display: grid;
+  // Fixed track width (not auto-fit/1fr) so a lone instructor card is the same
+  // size as each of the two IA cards, instead of stretching across the row.
+  grid-template-columns: repeat(auto-fill, 152px);
+  justify-content: start;
+  gap: 1.5rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.staff-card {
+  margin: 0;
+  text-align: center;
+}
+
+.staff-card__avatar {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  margin: 0 auto 0.6rem;
+  border-radius: 50%;
+  // Maize ring reads as branding and hides the seam on light headshots.
+  box-shadow: 0 0 0 3px $um-maize;
+  // Non-square photos are cropped to the circle rather than squashed.
+  object-fit: cover;
+}
+
+.staff-card__initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $um-blue;
+
+  span {
+    color: $um-maize;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+}
+
+.staff-card__name {
+  margin: 0;
+  color: $um-blue;
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.staff-card__title {
+  margin: 0.15rem 0 0;
+  font-size: 0.7rem;
+  line-height: 1.35;
+  color: $grey-dk-000;
+}
+
+.staff-card__email {
+  margin: 0.3rem 0 0;
+  font-size: 0.7rem;
+  line-height: 1.3;
+
+  // umich.edu addresses are long; let them break rather than overflow the card.
+  a {
+    overflow-wrap: anywhere;
+  }
+}

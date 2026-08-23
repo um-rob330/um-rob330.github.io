@@ -1,0 +1,13 @@
+{%- comment -%}
+  Site footer. This is an include rather than `footer_content` in _config.yml
+  because it needs Liquid — config values are static strings, so the semester
+  label would have to be hardcoded there and would go stale on rollover.
+{%- endcomment -%}
+
+<p class="text-small text-grey-dk-000 mb-0">
+  {{ site.course.code }} · {{ site.course.institution }} · {{ site.semester.label }}
+  · <a href="{{ site.url }}/">all semesters</a>
+  <br>
+  Site built with <a href="https://jekyllrb.com">Jekyll</a> and
+  <a href="https://just-the-docs.com">Just the Docs</a>.
+</p>

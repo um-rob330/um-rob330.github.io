@@ -1,0 +1,392 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Builds every semester listed in semesters.yml into _site/<code>/ and writes a
+# landing page at _site/index.html that links to each one.
+#
+#   bin/build            # all semesters
+#   bin/build f26        # only f26 (landing page still lists all)
+#
+# Why a script instead of workflow YAML: the baseurl/directory consistency check
+# below is the difference between a working site and one where every internal
+# link 404s, and it belongs somewhere you can run locally before pushing.
+
+require "yaml"
+require "fileutils"
+
+ROOT = File.expand_path("..", __dir__)
+Dir.chdir(ROOT)
+
+OUT = "_site"
+MANIFEST = "semesters.yml"
+
+def die(msg)
+  warn "\e[31mbuild failed:\e[0m #{msg}"
+  exit 1
+end
+
+def info(msg)
+  puts "  #{msg}"
+end
+
+die "#{MANIFEST} not found" unless File.exist?(MANIFEST)
+
+manifest = YAML.load_file(MANIFEST)
+all = manifest["semesters"] || []
+die "#{MANIFEST} lists no semesters" if all.empty?
+current = manifest["current"]
+
+requested = ARGV.reject { |a| a.start_with?("-") }
+to_build =
+  if requested.empty?
+    all
+  else
+    unknown = requested - all.map { |s| s["code"] }
+    die "not in #{MANIFEST}: #{unknown.join(', ')}" unless unknown.empty?
+    all.select { |s| requested.include?(s["code"]) }
+  end
+
+# --- Preflight: catch the mistakes that produce a silently broken site -------
+puts "Checking #{to_build.size} semester(s)..."
+to_build.each do |sem|
+  code = sem["code"]
+  die "#{MANIFEST}: an entry is missing `code`" if code.to_s.empty?
+  die "directory #{code}/ does not exist (listed in #{MANIFEST})" unless Dir.exist?(code)
+
+  config_path = File.join(code, "_config.yml")
+  die "#{config_path} not found" unless File.exist?(config_path)
+  config = File.read(config_path)
+
+  # Read the raw line rather than parsing the whole config: this only needs one
+  # value, and it keeps the check working regardless of what else is in there.
+  baseurl = config[/^baseurl:\s*["']?([^"'\n#]*)["']?/, 1].to_s.strip
+  expected = "/#{code}"
+  if baseurl != expected
+    die "#{config_path} has baseurl #{baseurl.inspect} but must be #{expected.inspect}.\n" \
+        "         The output is nested at #{OUT}#{expected}/, so any other baseurl makes\n" \
+        "         every internal link on the site 404."
+  end
+
+  semester_block = config[/^semester:\n(?:[ \t]+\S.*\n)+/]
+  die "#{config_path} has no `semester:` block" unless semester_block
+  declared = semester_block[/^\s+code:\s*["']?([\w-]+)/, 1]
+  if declared != code
+    die "#{config_path}: semester.code is #{declared.inspect} but the directory is #{code.inspect}"
+  end
+
+  # office_hours.yml refers to people by an id defined in staff.yml. A typo there
+  # would render a row with no name, so it's checked here rather than discovered
+  # by a student reading the page.
+  staff_path = File.join(code, "_data", "staff.yml")
+  hours_path = File.join(code, "_data", "office_hours.yml")
+  if File.exist?(staff_path) && File.exist?(hours_path)
+    staff = YAML.load_file(staff_path) || {}
+    hours = YAML.load_file(hours_path) || []
+    ids = staff.values.flatten.filter_map { |p| p["id"] }
+
+    missing_ids = staff.values.flatten.reject { |p| p["id"] }
+    unless missing_ids.empty?
+      die "#{staff_path}: #{missing_ids.size} person/people have no `id` " \
+          "(#{missing_ids.map { |p| p['name'] }.join(', ')}). office_hours.yml refers to ids."
+    end
+
+    dupes = ids.tally.select { |_, n| n > 1 }.keys
+    die "#{staff_path}: duplicate id(s) #{dupes.join(', ')} — ids must be unique" unless dupes.empty?
+
+    unknown = hours.map { |h| h["staff"] }.compact.uniq - ids
+    unless unknown.empty?
+      die "#{hours_path} references staff id(s) not in #{staff_path}: #{unknown.join(', ')}.\n" \
+          "         Known ids: #{ids.join(', ')}"
+    end
+
+    no_ref = hours.each_with_index.reject { |h, _| h["staff"] }.map { |_, i| i }
+    unless no_ref.empty?
+      die "#{hours_path}: row(s) #{no_ref.map { |i| i + 1 }.join(', ')} have no `staff:` id"
+    end
+
+    info "ok  #{code}  (baseurl #{baseurl}, #{ids.size} staff, #{hours.size} office-hour rows)"
+  else
+    info "ok  #{code}  (baseurl #{baseurl})"
+  end
+end
+
+# --- Build ------------------------------------------------------------------
+to_build.each do |sem|
+  code = sem["code"]
+  dest = File.join(OUT, code)
+  puts "\nBuilding #{code} -> #{dest}/"
+  FileUtils.rm_rf(dest)
+
+  cmd = ["bundle", "exec", "jekyll", "build",
+         "--source", code,
+         "--destination", dest]
+  cmd << "--trace" if ARGV.include?("--trace")
+
+  die "jekyll build failed for #{code}" unless system(*cmd)
+
+  # Every root-relative internal link must carry the baseurl. A link written as
+  # href="/assets/x.pdf" instead of relative_url renders without the /<code>
+  # prefix and 404s on the live site — while a link checker that only validates
+  # already-prefixed URLs sees nothing wrong. This catches the whole class.
+  base = "/#{code}"
+  offenders = {}
+  Dir.glob(File.join(dest, "**", "*.html")).each do |page|
+    File.read(page).scan(/\b(?:href|src)="(\/[^\/"][^"]*)"/).flatten.uniq.each do |url|
+      next if url.start_with?("#{base}/") || url == base
+
+      (offenders[url] ||= []) << page.sub("#{dest}/", "")
+    end
+  end
+  unless offenders.empty?
+    warn "\e[31mbuild failed:\e[0m #{offenders.size} internal link(s) in #{code} " \
+         "are missing the #{base.inspect} baseurl and will 404:"
+    offenders.first(12).each { |url, pages| warn "    #{url}   (in #{pages.first}#{pages.size > 1 ? " +#{pages.size - 1} more" : ''})" }
+    warn "    ...and #{offenders.size - 12} more" if offenders.size > 12
+    warn "  Fix by routing each through relative_url, e.g."
+    warn %(    src="{{ '/assets/x.png' | relative_url }}")
+    exit 1
+  end
+
+  # Markup that kramdown refused to treat as HTML shows up as escaped text on the
+  # page — e.g. a Liquid tag placed between two HTML attributes strips the newline
+  # between them and the whole tag gets printed to the reader. Code samples are
+  # escaped on purpose, so <pre>/<code> are stripped before checking.
+  escaped = {}
+  Dir.glob(File.join(dest, "**", "*.html")).each do |page|
+    body = File.read(page)
+             .gsub(%r{<pre\b.*?</pre>}m, "")
+             .gsub(%r{<code\b.*?</code>}m, "")
+    hits = body.scan(/&lt;(img|iframe|div|span|a|table|li|ul)\b/).flatten.tally
+    next if hits.empty?
+
+    escaped[page.sub("#{dest}/", "")] = hits
+  end
+  unless escaped.empty?
+    warn "\e[31mbuild failed:\e[0m escaped HTML is being shown as text to readers:"
+    escaped.each { |pg, hits| warn "    #{pg}: #{hits.map { |tag, n| "#{n}x <#{tag}>" }.join(', ')}" }
+    warn "  Usual cause: a Liquid tag placed inside an HTML tag, between attributes."
+    exit 1
+  end
+
+  # Every collection document should have produced a page. Jekyll writes nothing
+  # for a doc it considers unpublished or future-dated, yet still lists it in the
+  # nav — so the link 404s and the build reports success. Catch that here.
+  cfg_path = File.join(code, "_config.yml")
+  begin
+    cfg = YAML.load_file(cfg_path) || {}
+  rescue StandardError
+    cfg = {}
+  end
+  (cfg["collections"] || {}).each do |name, opts|
+    next unless opts.is_a?(Hash) && opts["output"]
+
+    # Only the "/<segment>/:path/" permalink shape can be checked by derivation.
+    permalink = opts["permalink"].to_s
+    unless permalink =~ %r{\A/([^/:]+)/:path/?\z}
+      info "note: skipping output check for collection '#{name}' (permalink #{permalink.inspect})"
+      next
+    end
+    segment = Regexp.last_match(1)
+
+    # Underscore-prefixed files are ignored by Jekyll on purpose (templates,
+    # drafts), so they are not missing pages.
+    sources = Dir.glob(File.join(code, "_#{name}", "*.{md,markdown,html}"))
+                 .reject { |p| File.basename(p).start_with?("_") }
+    absent = sources.reject do |src|
+      slug = File.basename(src, File.extname(src))
+      File.exist?(File.join(dest, segment, slug, "index.html"))
+    end
+
+    next if absent.empty?
+
+    puts "\n\e[33mwarning:\e[0m #{absent.size} of #{sources.size} '#{name}' " \
+         "document(s) produced no page:"
+    absent.each { |src| puts "    #{src}" }
+    puts "  Usual cause: a future `date:` with future:false, or published:false."
+    puts "  These will 404 even though they appear in the nav."
+  end
+end
+
+# --- Landing page -----------------------------------------------------------
+# Generated from the manifest so a new semester appears here automatically.
+#
+# Course identity is read from the CURRENT semester's _config.yml rather than
+# hardcoded here. Hardcoding it meant a course rename had to be made in two
+# places and silently drifted when it wasn't.
+current_dir = current.to_s
+course = {}
+if Dir.exist?(current_dir) && File.exist?(File.join(current_dir, "_config.yml"))
+  begin
+    cfg = YAML.load_file(File.join(current_dir, "_config.yml")) || {}
+    course = cfg["course"] || {}
+  rescue StandardError => e
+    warn "  note: could not parse #{current_dir}/_config.yml for landing-page text (#{e.class})"
+  end
+end
+
+course_code = course["code"] || "Course"
+course_name = course["name"] || ""
+institution = course["institution"] || ""
+full_title = course_name.empty? ? course_code : "#{course_code}: #{course_name}"
+catalog = (course["description_catalog"] || "").strip
+
+def h(str)
+  str.to_s.gsub("&", "&amp;").gsub("<", "&lt;").gsub(">", "&gt;").gsub('"', "&quot;")
+end
+
+cards = all.map do |sem|
+  code = sem["code"]
+  label = sem["label"] || code
+  is_current = (code == current)
+  badge = is_current ? %(<span class="badge">current</span>) : ""
+  <<~CARD
+    <li class="card#{is_current ? ' card--current' : ''}">
+      <a href="./#{code}/">
+        <span class="card__label">#{label}#{badge}</span>
+        <span class="card__code">/#{code}</span>
+      </a>
+    </li>
+  CARD
+end.join("\n")
+
+landing = <<~HTML
+  <!doctype html>
+  <html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>#{h(full_title)}</title>
+  <meta name="description" content="Course offerings of #{h(full_title)}#{institution.empty? ? '' : " at #{h(institution)}"}.">
+  <style>
+    :root {
+      --navy: #00274c;
+      --maize: #ffcb05;
+      --bg: #ffffff;
+      --text: #1c1c1c;
+      --muted: #57646f;
+      --line: #c8d6e3;
+      --card: #f4f7fa;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #10151b;
+        --text: #e8edf2;
+        --muted: #9fb0c0;
+        --line: #2b3947;
+        --card: #18212b;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 3rem 1.25rem 4rem;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    }
+    main { max-width: 44rem; margin: 0 auto; }
+    .eyebrow {
+      margin: 0;
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+    h1 { margin: .3rem 0 0; font-size: 2rem; line-height: 1.15; }
+    .rule { width: 4.5rem; height: 5px; margin: .9rem 0 1.5rem; border-radius: 3px; background: var(--maize); }
+    .lede { max-width: 40rem; margin: 0 0 2.5rem; color: var(--muted); }
+    h2 { font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 .85rem; }
+    ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; }
+    .card a {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+      padding: 1rem 1.15rem;
+      border: 1px solid var(--line); border-radius: 8px;
+      background: var(--card);
+      color: inherit; text-decoration: none;
+    }
+    .card a:hover, .card a:focus-visible {
+      border-color: var(--maize);
+      box-shadow: 0 0 0 2px var(--maize);
+      outline: none;
+    }
+    .card--current a { border-left: 5px solid var(--maize); }
+    .card__label { font-weight: 600; }
+    .card__code { color: var(--muted); font-size: .8rem; font-variant-numeric: tabular-nums; }
+    .badge {
+      margin-left: .55rem; padding: .12em .5em;
+      border-radius: 999px; background: var(--maize); color: #27201b;
+      font-size: .62rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+      vertical-align: .12em;
+    }
+    footer { margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .8rem; }
+    footer a { color: inherit; }
+  </style>
+  </head>
+  <body>
+  <main>
+    <p class="eyebrow">#{h(institution)}</p>
+    <h1>#{h(full_title)}</h1>
+    <div class="rule"></div>
+    <p class="lede">#{h(catalog)}</p>
+
+    <h2>Course offerings</h2>
+    <ul>
+  #{cards.gsub(/^/, "    ").rstrip}
+    </ul>
+
+    <footer>
+      Each offering is a self-contained site.
+      Source: <a href="https://github.com/rob330/rob330.github.io">github.com/rob330/rob330.github.io</a>
+    </footer>
+  </main>
+  </body>
+  </html>
+HTML
+
+FileUtils.mkdir_p(OUT)
+File.write(File.join(OUT, "index.html"), landing)
+
+puts "\nWrote #{OUT}/index.html listing #{all.size} semester(s): #{all.map { |s| s['code'] }.join(', ')}"
+
+# --- Placeholder audit (advisory, never fails the build) ---------------------
+# TODO markers are content the instructor still owes; VERIFY markers are drafts
+# that need a human to confirm a fact, and they ship as HTML comments — readable
+# by anyone who views source. Both should be zero before a term goes live.
+report = to_build.map do |sem|
+  code = sem["code"]
+  counts = Hash.new(0)
+  files = {}
+  Dir.glob("#{code}/**/*.{md,yml,html}").each do |path|
+    next if path.include?("/.jekyll-cache/")
+
+    text = File.read(path)
+    todo = text.scan(/TODO/).size
+    verify = text.scan(/VERIFY/).size
+    next if todo.zero? && verify.zero?
+
+    counts[:todo] += todo
+    counts[:verify] += verify
+    files[path] = [todo, verify]
+  end
+  [code, counts, files]
+end
+
+remaining = report.sum { |(_, c, _)| c[:todo] + c[:verify] }
+if remaining.positive?
+  puts "\n\e[33mPlaceholders remaining:\e[0m"
+  report.each do |code, counts, files|
+    next if files.empty?
+
+    puts "  #{code}: #{counts[:todo]} TODO, #{counts[:verify]} VERIFY"
+    files.sort_by { |path, (t, v)| [-(t + v), path] }.each do |path, (t, v)|
+      bits = []
+      bits << "#{t} TODO" if t.positive?
+      bits << "#{v} VERIFY" if v.positive?
+      puts "      #{path.ljust(40)} #{bits.join(', ')}"
+    end
+  end
+  puts "  VERIFY markers ship as HTML comments — clear them before the term goes live."
+end
+
+puts "\nDone."

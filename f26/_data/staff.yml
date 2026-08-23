@@ -1,0 +1,72 @@
+# ---------------------------------------------------------------------------
+# Course staff. This file is the ONLY place names and emails are written.
+# _data/office_hours.yml refers to people by `id`, so a name can never drift
+# between the staff cards and the office-hours table.
+#
+# Fields per person:
+#   id     (required) short stable key, referenced from office_hours.yml.
+#                     Lowercase, no spaces. Usually a surname.
+#   name   (required) full name as displayed. Quote with '...' if it contains "
+#   email  (required) becomes a mailto: link
+#   title  (optional) one short line under the name, e.g. a rank or role
+#   url    (optional) profile page; the displayed name becomes a link to it
+#   photo  (optional) filename of a square image in assets/images/staff/
+#                     -> leave "" and a navy circle with the person's initials
+#                        is drawn instead. Set it to swap in the headshot.
+#
+# Photos: square crops look best (they're masked to a circle). ~400x400 px is
+# plenty; anything non-square is center-cropped rather than squashed.
+#
+# bin/build fails if office_hours.yml references an id that isn't here.
+# ---------------------------------------------------------------------------
+
+instructor:
+  # id stays role-based rather than surname-based (unlike the others): it is
+  # referenced from office_hours.yml, and an instructor change on a future
+  # offering then needs no id rename in either file.
+  - id: instructor
+    name: "Xiaoxiao Du"
+    email: "xiaodu@umich.edu"
+    url: "https://robotics.umich.edu/people/faculty/xiaoxiao-du/"
+    photo: "xiaodu.webp"
+
+gsi:
+  - id: rattan
+    name: "Avantika Rattan"
+    email: "arattan@umich.edu"
+    title: "Graduate Student Instructor"
+    photo: ""
+
+ia:
+  # Single-quoted because the name contains double quotes. In YAML, '...' takes
+  # the contents literally, so the nickname's quote marks survive as typed.
+  - id: edukulla
+    name: 'Ashrith "Ash" Edukulla'
+    email: "ashed@umich.edu"
+    title: "Instructional Assistant"
+    photo: ""
+
+  - id: norwood
+    name: "Bailey Norwood"
+    email: "bailsn@umich.edu"
+    title: "Instructional Assistant"
+    photo: ""
+
+# Rendered under the Instructional Assistants on the home page.
+# `title` is left empty rather than TODO because it's optional — the card simply
+# omits the line. Fill it in ("Lab Support", "Course Coordinator", ...) if it
+# helps students know who to ask for what.
+support:
+  - id: narula
+    name: "Abhishek Narula"
+    email: "abnarula@umich.edu"
+    url: "https://robotics.umich.edu/people/staff/abhishek-narula/"
+    title: ""
+    photo: "abhishek.webp"
+
+  - id: klinkman
+    name: "Emily Klinkman"
+    email: "emilykk@umich.edu"
+    url: "https://robotics.umich.edu/people/staff/emily-klinkman/"
+    title: ""
+    photo: "emilyk.webp"

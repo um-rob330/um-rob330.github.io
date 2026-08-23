@@ -1,0 +1,646 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+  <link rel="stylesheet" href="/f26/assets/css/just-the-docs-default.css">
+
+  <link rel="stylesheet" href="/f26/assets/css/just-the-docs-head-nav.css" id="jtd-head-nav-stylesheet">
+
+  <style id="jtd-nav-activation">
+  
+
+    .site-nav > ul.nav-list:first-child > li > a,
+    
+    .site-nav > ul.nav-list:first-child > li > ul > li:not(:nth-child(2)) > a,
+    .site-nav > ul.nav-list:first-child > li > ul > li > ul > li a {
+      background-image: none;
+    }
+
+    .site-nav > ul.nav-list:not(:first-child) a,
+    .site-nav li.external a {
+      background-image: none;
+    }
+
+    .site-nav > ul.nav-list:first-child > li:nth-child(4) > ul > li:nth-child(2) > a {
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .site-nav > ul.nav-category-list > li > button svg,
+    .site-nav > ul.nav-list:first-child > li:nth-child(4) > button svg,
+    .site-nav > ul.nav-list:first-child > li:nth-child(4) > ul > li:nth-child(2) > button svg {
+      transform: rotate(-90deg);
+    }
+    .site-nav > ul.nav-category-list > li.nav-list-item > ul.nav-list,
+    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(4) > ul.nav-list,
+    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(4) > ul.nav-list > li.nav-list-item:nth-child(2) > ul.nav-list {
+      display: block;
+    }
+  </style>
+
+  
+
+  
+    <script src="/f26/assets/js/vendor/lunr.min.js"></script>
+  
+
+  <script src="/f26/assets/js/just-the-docs.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+
+
+
+  <!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>Checkpoint 1 | ROB 330: Localization, Mapping, and Navigation</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Checkpoint 1" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Junior-level course on full-stack autonomous navigation and mapping for mobile robots: odometry, sensor modeling, visual odometry, path planning, and SLAM — implemented on hardware." />
+<meta name="twitter:description" property="og:description" content="Junior-level course on full-stack autonomous navigation and mapping for mobile robots: odometry, sensor modeling, visual odometry, path planning, and SLAM — implemented on hardware." />
+<link rel="canonical" href="http://localhost:4000/f26/checkpoints/checkpoint1/" />
+<meta property="og:url" content="http://localhost:4000/f26/checkpoints/checkpoint1/" />
+<meta property="og:site_name" content="ROB 330: Localization, Mapping, and Navigation" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Checkpoint 1" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","dateModified":"2026-03-17T11:20:00-04:00","description":"Junior-level course on full-stack autonomous navigation and mapping for mobile robots: odometry, sensor modeling, visual odometry, path planning, and SLAM — implemented on hardware.","headline":"Checkpoint 1","url":"http://localhost:4000/f26/checkpoints/checkpoint1/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+</head>
+
+<body>
+  <a class="skip-to-main" href="#main-content">Skip to main content</a>
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+  <symbol id="svg-link" viewBox="0 0 24 24">
+  <title>Link</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+  </svg>
+</symbol>
+
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+  <title>Menu</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+    <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+  </svg>
+</symbol>
+
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+  <title>Expand</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+    <polyline points="9 18 15 12 9 6"></polyline>
+  </svg>
+</symbol>
+
+  <!-- Feather. MIT License: https://github.com/feathericons/feather/blob/master/LICENSE -->
+<symbol id="svg-external-link" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link">
+  <title id="svg-external-link-title">(external link)</title>
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line>
+</symbol>
+
+  
+    <symbol id="svg-doc" viewBox="0 0 24 24">
+  <title>Document</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+  </svg>
+</symbol>
+
+    <symbol id="svg-search" viewBox="0 0 24 24">
+  <title>Search</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+    <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+  </svg>
+</symbol>
+
+  
+  
+    <!-- Bootstrap Icons. MIT License: https://github.com/twbs/icons/blob/main/LICENSE.md -->
+<symbol id="svg-copy" viewBox="0 0 16 16">
+  <title>Copy</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+    <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+  </svg>
+</symbol>
+<symbol id="svg-copied" viewBox="0 0 16 16">
+  <title>Copied</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check-fill" viewBox="0 0 16 16">
+    <path d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3Zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3Z"/>
+    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5v-1Zm6.854 7.354-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708Z"/>
+  </svg>
+</symbol>
+
+  
+</svg>
+
+  
+    <div class="side-bar">
+  <div class="site-header" role="banner">
+    <a href="/f26/" class="site-title lh-tight">
+  ROB 330: Localization, Mapping, and Navigation
+
+</a>
+    <button id="menu-button" class="site-button btn-reset" aria-label="Menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><use xlink:href="#svg-menu"></use></svg>
+    </button>
+  </div>
+
+  <nav aria-label="Main" id="site-nav" class="site-nav">
+  
+  
+    <ul class="nav-list"><li class="nav-list-item"><a href="/f26/" class="nav-list-link">Home</a></li><li class="nav-list-item"><a href="/f26/syllabus/" class="nav-list-link">Syllabus</a></li><li class="nav-list-item"><a href="/f26/schedule/" class="nav-list-link">Schedule</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Checkpoints submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/f26/checkpoints/" class="nav-list-link">Checkpoints</a><ul class="nav-list"><li class="nav-list-item"><a href="/f26/checkpoints/checkpoint0/" class="nav-list-link">Checkpoint 0</a></li><li class="nav-list-item"><a href="/f26/checkpoints/checkpoint1/" class="nav-list-link">Checkpoint 1</a></li><li class="nav-list-item"><a href="/f26/checkpoints/checkpoint2/" class="nav-list-link">Checkpoint 2</a></li><li class="nav-list-item"><a href="/f26/checkpoints/checkpoint3/" class="nav-list-link">Checkpoint 3</a></li><li class="nav-list-item"><a href="/f26/checkpoints/checkpoint4/" class="nav-list-link">Checkpoint 4</a></li><li class="nav-list-item"><a href="/f26/checkpoints/checkpoint5/" class="nav-list-link">Checkpoint 5</a></li><li class="nav-list-item"><a href="/f26/checkpoints/competition/" class="nav-list-link">Competition</a></li></ul></li><li class="nav-list-item"><a href="/f26/office-hours/" class="nav-list-link">Office Hours</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Resources submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/f26/resources/" class="nav-list-link">Resources</a><ul class="nav-list"><li class="nav-list-item"><a href="/f26/resources/get-started/" class="nav-list-link">Get Started with ROS MBot</a></li><li class="nav-list-item"><a href="/f26/resources/mbot-hardware-setup-pi5/" class="nav-list-link">MBot Hardware Setup</a></li><li class="nav-list-item"><a href="/f26/resources/mbot-system-setup-pi5/" class="nav-list-link">MBot System Setup</a></li><li class="nav-list-item"><a href="/f26/resources/mbot-hardware-design/" class="nav-list-link">MBot Hardware Design</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="How-to Guide submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/f26/resources/how-to-guide/" class="nav-list-link">How-to Guide</a><ul class="nav-list"><li class="nav-list-item"><a href="/f26/resources/how-to-guide/slam-toolbox-guide/" class="nav-list-link">slam_toolbox Guide</a></li><li class="nav-list-item"><a href="/f26/resources/how-to-guide/mbot-servo-lib-guide/" class="nav-list-link">mbot_servo_lib Guide</a></li><li class="nav-list-item"><a href="/f26/resources/how-to-guide/misc/" class="nav-list-link">Misc</a></li></ul></li></ul></li></ul>
+  <ul class="nav-list"></ul>
+    
+    
+      
+      
+      
+      
+        
+          
+            <ul class="nav-list nav-category-list">
+              <li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Lecture Notes collection" aria-expanded="false">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+                </button><div class="nav-category">Lecture Notes</div>
+                <ul class="nav-list"><li class="nav-list-item"><a href="/f26/lectures/lecture-01/" class="nav-list-link">01 — Course overview and motivation</a></li></ul>
+              </li>
+            </ul>
+          
+        
+      
+    
+  
+</nav>
+
+
+
+
+  
+  
+    <footer class="site-footer">
+      This site uses <a href="https://github.com/just-the-docs/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.
+    </footer>
+  
+</div>
+
+  
+  <div class="main" id="top">
+    <div id="main-header" class="main-header">
+  
+    
+
+<div class="search" role="search">
+  <div class="search-input-wrap">
+    <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search ROB 330: Localization, Mapping, and Navigation" autocomplete="off">
+    <label for="search-input" class="search-label">
+      <span class="sr-only">Search ROB 330: Localization, Mapping, and Navigation</span>
+      <svg viewBox="0 0 24 24" class="search-icon" aria-hidden="true"><use xlink:href="#svg-search"></use></svg>
+    </label>
+  </div>
+  <div id="search-results" class="search-results"></div>
+</div>
+
+  
+  
+  
+    <nav aria-label="Auxiliary" class="aux-nav">
+  <ul class="aux-nav-list">
+    
+      <li class="aux-nav-list-item">
+        <a href="https://canvas.it.umich.edu/" class="site-button"
+          
+        >
+          Canvas
+        </a>
+      </li>
+    
+      <li class="aux-nav-list-item">
+        <a href="https://piazza.com/umich/fall2026/rob330fa2026/home" class="site-button"
+          
+        >
+          Piazza
+        </a>
+      </li>
+    
+      <li class="aux-nav-list-item">
+        <a href="https://drive.google.com/drive/folders/1ZYIDd03sRtkSddDVlESq2QoCIzSGEajw?usp=drive_link" class="site-button"
+          
+        >
+          Google Drive
+        </a>
+      </li>
+    
+      <li class="aux-nav-list-item">
+        <a href="https://github.com/rob330/rob330.github.io" class="site-button"
+          
+        >
+          GitLab
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+  
+</div>
+
+    <div class="main-content-wrap">
+      <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+  <ol class="breadcrumb-nav-list">
+    <li class="breadcrumb-nav-list-item"><a href="/f26/checkpoints/">Checkpoints</a></li>
+    <li class="breadcrumb-nav-list-item"><span>Checkpoint 1</span></li>
+  </ol>
+</nav>
+
+
+      <div id="main-content" class="main-content">
+        <main>
+          
+            <h3 id="contents">
+  
+  
+    <a href="#contents" class="anchor-heading" aria-labelledby="contents"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Contents
+  
+  
+</h3>
+    
+<ul id="markdown-toc">
+  <li><a href="#contents" id="markdown-toc-contents">Contents</a></li>
+  <li><a href="#task-11-wheel-calibration" id="markdown-toc-task-11-wheel-calibration">Task 1.1 Wheel Calibration</a>    <ul>
+      <li><a href="#todo" id="markdown-toc-todo">TODO</a></li>
+    </ul>
+  </li>
+  <li><a href="#task-12-pid-tuning" id="markdown-toc-task-12-pid-tuning">Task 1.2 PID Tuning</a>    <ul>
+      <li><a href="#todo-1" id="markdown-toc-todo-1">TODO</a></li>
+    </ul>
+  </li>
+  <li><a href="#task-13-improve-firmware" id="markdown-toc-task-13-improve-firmware">Task 1.3 Improve firmware</a>    <ul>
+      <li><a href="#todo-2" id="markdown-toc-todo-2">TODO</a></li>
+    </ul>
+  </li>
+  <li><a href="#task-14-motion-controller" id="markdown-toc-task-14-motion-controller">Task 1.4 Motion Controller</a>    <ul>
+      <li><a href="#todo-3" id="markdown-toc-todo-3">TODO</a></li>
+    </ul>
+  </li>
+  <li><a href="#checkpoint-submission" id="markdown-toc-checkpoint-submission">Checkpoint Submission</a></li>
+</ul>
+<h2 id="task-11-wheel-calibration">
+  
+  
+    <a href="#task-11-wheel-calibration" class="anchor-heading" aria-labelledby="task-11-wheel-calibration"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Task 1.1 Wheel Calibration
+  
+  
+</h2>
+    
+<p>The calibration program checks the polarity of the encoders and motors, then performs a wheel speed calibration. The resulting data are printed to the terminal and stored in the MBot’s non-volatile memory.</p>
+
+<p>The calibration data consists of:</p>
+<ul>
+  <li>Encoder Polarity: Defines whether the encoder count increases or decreases relative to the motor’s rotation.</li>
+  <li>Motor Polarity: Defines the wheel rotation direction when a positive command is received; the firmware uses this to ensure the wheels spin the correct way.</li>
+  <li>Slopes and Intercepts: Define the linear relationship between the PWM duty cycles and the actual speeds of the wheels.</li>
+</ul>
+
+\[\text{PWM}=m \times \text{Speed} + b\]
+<h3 id="todo">
+  
+  
+    <a href="#todo" class="anchor-heading" aria-labelledby="todo"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> TODO
+  
+  
+</h3>
+    
+<p>Open one terminal with Minicom to monitor the calibration output, and use another terminal to flash the calibration firmware to the Pico. Run the calibration several times and collect the resulting data for analysis.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># terminal 1</span>
+<span class="nb">sudo </span>minicom <span class="nt">-D</span> /dev/mbot_debug <span class="nt">-b</span> 115200
+<span class="c"># terminal 2</span>
+<span class="nb">cd</span> ~/mbot_firmware_ros/build
+<span class="nb">sudo </span>mbot-upload-firmware flash mbot_calibrate_classic.uf2 
+</code></pre></div></div>
+<p><strong>To quit minicom, first press CTRL + A, then press X, then press Enter to quit</strong>. Alternatively, you can simply close the terminal window.</p>
+
+<p><strong>Tips:</strong></p>
+<ol>
+  <li>Close your current Minicom session before starting a new one (prevents port errors).</li>
+  <li>Stay organized: Don’t hoard terminal windows. Keep only what you need open so you don’t get confused.</li>
+</ol>
+
+<p>Once you’ve finished collecting data, remember to flash <strong>the firmware</strong> back to the control board.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ~/mbot_firmware_ros/build
+<span class="nb">sudo </span>mbot-upload-firmware flash mbot_classic_ros.uf2
+</code></pre></div></div>
+
+<p class="required_for_report">Perform the calibration on each robot in your group at least 5 times, report the motor calibration with variance for the robot on a concrete floor (like in the lab).
+<br /><br /> Questions to Consider:
+<br /> 1) How much variation is there in the calibration for a single robot? Between the team robots?
+<br /> 2) What do you think is the source of variation?</p>
+<h2 id="task-12-pid-tuning">
+  
+  
+    <a href="#task-12-pid-tuning" class="anchor-heading" aria-labelledby="task-12-pid-tuning"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Task 1.2 PID Tuning
+  
+  
+</h2>
+    
+<p>There are 3 drive modes and 3 control modes in firmware source code.</p>
+
+<p><strong>Drive Modes</strong></p>
+<ul>
+  <li>PWM Control — You directly send PWM commands to individual motors.</li>
+  <li>Wheel Velocity Control — You send wheel velocity commands to individual wheels.</li>
+  <li>Robot Velocity Control — You send robot body velocity commands <code class="language-plaintext highlighter-rouge">vx</code> and <code class="language-plaintext highlighter-rouge">wz</code>.</li>
+</ul>
+
+<p><strong>Control Modes</strong></p>
+<ul>
+  <li>Feedforward (FF) Control Only</li>
+  <li>PID Control Only</li>
+  <li>Feedforward + PID Control</li>
+</ul>
+
+<p>The <strong>drive mode is automatically selected</strong> based on the type of control command you send:</p>
+<ul>
+  <li>If you publish to <code class="language-plaintext highlighter-rouge">/cmd_vel</code>, <strong>Robot Velocity Control</strong> mode will be selected, meaning the robot will interpret commands as body velocities.</li>
+</ul>
+
+<p>The <strong>control mode is automatically selected</strong> when you flash the calibration script. The default mode is <strong>Feedforward Control Only</strong>. During calibration, the script reads the default parameters from
+<code class="language-plaintext highlighter-rouge">mbot_firmware_ros/include/config/mbot_classic_default_pid.h</code>
+and writes them to FRAM.</p>
+
+<p>You can tune the PID gains at runtime via the ROS parameter server.</p>
+
+<p>You may notice that only wheel-level PID gains are exposed. This is because Robot Velocity Control is implemented on top of Wheel Velocity Control:</p>
+<ul>
+  <li>The commanded body velocities (vx, wz) are first converted into individual wheel velocities using the robot kinematics.</li>
+  <li>These wheel velocity commands are then tracked using the selected control mode (FF, PID, or FF+PID), which ultimately generates PWM commands for the motors.</li>
+</ul>
+<h3 id="todo-1">
+  
+  
+    <a href="#todo-1" class="anchor-heading" aria-labelledby="todo-1"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> TODO
+  
+  
+</h3>
+    
+<p>Tune the PID values to achieve a desired system response.</p>
+
+<p><strong>How to tune?</strong></p>
+<ol>
+  <li>First, modify the values in <code class="language-plaintext highlighter-rouge">~/mbot_firmware_ros/include/config/mbot_classic_pid.yaml</code>. You can tune the PID gains for both wheels, and select control modes there.</li>
+  <li>After modifying the values in the yaml file, run the command below to load the new configs:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">cd</span> ~/mbot_firmware_ros
+ ros2 param load /mbot_control_node include/config/mbot_classic_pid.yaml
+</code></pre></div>    </div>
+  </li>
+  <li>If you want to check whether the values are actually loaded, run:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ros2 param dump /mbot_control_node 
+</code></pre></div>    </div>
+    <ul>
+      <li>If you see the values you set, it means the new PID gains have been applied to the MBot and written to the FRAM. You can run test now!</li>
+      <li><strong>The PID values will persist after rebooting. However</strong>, if you flash the calibration again, the calibration script will overwrite your tuned PID gains by the values in <code class="language-plaintext highlighter-rouge">mbot_firmware_ros/include/config/mbot_classic_default_pid.h</code>, and you’ll need to reload the YAML file to restore them by running the command from step 2.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">mbot_firmware_ros/python-tests/step_cmd_test.py</code>: This script sends robot body velocity to drive robot forward, and rotate clockwise then counterclock-wise.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">cd</span> ~/mbot_firmware_ros/python-tests/
+ python3 step_cmd_test.py
+</code></pre></div>    </div>
+  </li>
+  <li>Running the script above to command the robot, we can then plot commanded velocity versus actual velocity to evaluate tuning performance and further refine your gains. To do this, you can either write a Python script in the <code class="language-plaintext highlighter-rouge">python-tests</code> folder to log data from the <code class="language-plaintext highlighter-rouge">cmd_vel</code> and <code class="language-plaintext highlighter-rouge">odom</code> ROS topics, or use Foxglove for real-time plotting. If you followed the system setup guide, Foxglove should already be installed.
+    <ul>
+      <li>To use foxglove, first always run the foxglove bridge
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ros2 launch foxglove_bridge foxglove_bridge_launch.xml
+</code></pre></div>        </div>
+      </li>
+      <li>video demo - use foxglove to tune</li>
+    </ul>
+    <iframe width="400" height="250" src="https://www.youtube.com/embed/OCqVv2FfZtU?si=2OBXkpad1jPT_0SY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
+  </li>
+</ol>
+
+<p><strong>Tip:</strong></p>
+<ul>
+  <li>We define robot’s base radius in <code class="language-plaintext highlighter-rouge">~/mbot_firmware_ros/include/config/mbot_classic_config.h</code>. <code class="language-plaintext highlighter-rouge">DIFF_BASE_RADIUS</code> value (in meter) represents the <strong>robot’s base radius</strong>. The <strong>base diameter</strong> is the distance from the center of one wheel to the center of the other. Inaccuracy of this value also affect the robot body velocity, we use this value in <code class="language-plaintext highlighter-rouge">mbot_firmware_ros/src/mbot_classic_ros.c</code>.</li>
+  <li>If you modified <code class="language-plaintext highlighter-rouge">DIFF_BASE_RADIUS</code>, remember to recompile the firmware and flash it to the control board.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">cd</span> ~/mbot_firmware_ros/build
+  cmake ..
+  make
+  <span class="nb">sudo </span>mbot-upload-firmware flash mbot_classic_ros.uf2
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p class="required_for_report">Plot of time vs. velocity with robot responding to a step command of 0.5 m/s for the FF model and the controller model you chose to tune, and explain the differences in performance. Describe the controller you chose in detail and justify your choice.</p>
+<h2 id="task-13-improve-firmware">
+  
+  
+    <a href="#task-13-improve-firmware" class="anchor-heading" aria-labelledby="task-13-improve-firmware"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Task 1.3 Improve firmware
+  
+  
+</h2>
+    
+
+<p>Odometry estimates your robot’s position and orientation by integrating wheel encoder measurements over time. In the firmware code we currently use a simple dead-reckoning approach, which may not provide the most accurate results.</p>
+
+<p>While the PID controllers help maintain accurate wheel speeds, you can add further enhancements to improve overall motion performance.</p>
+<h3 id="todo-2">
+  
+  
+    <a href="#todo-2" class="anchor-heading" aria-labelledby="todo-2"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> TODO
+  
+  
+</h3>
+    
+<ol>
+  <li>In <code class="language-plaintext highlighter-rouge">~/mbot_firmware_ros/src/mbot_odometry.c</code>, complete the gyrodometry function and add a new publisher to broadcast this data to a topic named <code class="language-plaintext highlighter-rouge">/gyrodom</code>. Compare the performance by plotting <code class="language-plaintext highlighter-rouge">/gyrodom</code> against the standard <code class="language-plaintext highlighter-rouge">/odom</code>. Determine which method is more accurate and comment out the less effective one. Ensure that your final, chosen method publishes directly to the <code class="language-plaintext highlighter-rouge">/odom</code> topic, we use this specific topic in the later tasks.
+    <ul>
+      <li>Hint: You will also need to modify <code class="language-plaintext highlighter-rouge">mbot_classic_ros.c/h</code>and <code class="language-plaintext highlighter-rouge">mbot_ros_comms.c/h</code>, A good strategy is to search for the keyword “odom” in these files and implement your new logic in parallel with the existing odometry code.</li>
+    </ul>
+  </li>
+  <li>Read <code class="language-plaintext highlighter-rouge">~/mbot_firmware_ros/src/mbot_classic_ros.c</code>. This is the source code of the firmware uf2 file you compiled. The PID controller implementation is in <code class="language-plaintext highlighter-rouge">mbot_loop()</code>, if you want to add features such as filters, this is a good place to begin.</li>
+</ol>
+
+<p><strong>How to test your changes?</strong></p>
+<ol>
+  <li>Compile your code and flash it to the control board:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">cd</span> ~/mbot_firmware_ros/build
+  cmake ..
+  make
+  <span class="nb">sudo </span>mbot-upload-firmware flash mbot_classic_ros.uf2
+</code></pre></div>    </div>
+  </li>
+  <li>Plot <code class="language-plaintext highlighter-rouge">/gyrodom</code> vs <code class="language-plaintext highlighter-rouge">/odom</code> either use python script or foxglove.</li>
+</ol>
+
+<p class="required_for_report">Add the gyrodometry calculation to the firmware and add a new publisher and publish it to a new topic named <code class="language-plaintext highlighter-rouge">gyrodom</code>. Create a plot comparing <code class="language-plaintext highlighter-rouge">gyrodom</code> vs <code class="language-plaintext highlighter-rouge">odom</code> showing the improvements, if any, of using IMU to calculate the robot odometry.
+<br /><br /> Describe any additional change to the firmware to improve the performance of the low level controller.</p>
+<h2 id="task-14-motion-controller">
+  
+  
+    <a href="#task-14-motion-controller" class="anchor-heading" aria-labelledby="task-14-motion-controller"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Task 1.4 Motion Controller
+  
+  
+</h2>
+    
+<p>The motion controller takes a series of waypoints as input and generates velocity commands as output to navigate through them.</p>
+
+<p>In this task, you will implement a rotate-translate-rotate controller. This is a high-level strategy that uses a PID controller to precisely execute each movement: rotating to the goal, driving forward, and rotating to the final orientation.</p>
+
+<p>The PID controller in the firmware is used to control the wheel speed, while the PID controller in this task is used to control the traveled distance.</p>
+<h3 id="todo-3">
+  
+  
+    <a href="#todo-3" class="anchor-heading" aria-labelledby="todo-3"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> TODO
+  
+  
+</h3>
+    
+<ol>
+  <li>Go to the Class <strong>GitLab</strong> page, fork the <code class="language-plaintext highlighter-rouge">mbot_ros_labs</code> repository to your group. This repository contains the code for checkpoints.</li>
+  <li>Create a workspace directory named <code class="language-plaintext highlighter-rouge">mbot_ros_labs</code>, and clone the forked repository into a subdirectory called <code class="language-plaintext highlighter-rouge">src</code>:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">cd</span> ~
+  <span class="nb">mkdir </span>mbot_ros_labs
+  <span class="nb">cd</span> ~/mbot_ros_labs
+  git clone your_url src
+</code></pre></div>    </div>
+  </li>
+  <li>Implement the RTR controller in the file <code class="language-plaintext highlighter-rouge">mbot_ros_labs/mbot_nav/src/controllers/rtr_controller.cpp</code>. All the functions you need to complete are marked with “TODO”.</li>
+  <li>Once you finish writing your code, build and source the workspace. We need to re-build the packages every time we make changes.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">cd</span> ~/mbot_ros_labs
+  colcon build <span class="nt">--packages-select</span> mbot_nav
+  <span class="nb">source install</span>/setup.bash
+</code></pre></div>    </div>
+    <ul>
+      <li class="text-red-200"><strong>Important: You must source the workspace in every relevant terminal after each build. If you don’t, ROS will keep using the old code, and your changes will not take effect.</strong></li>
+      <li>You may notice we do not recommend adding <code class="language-plaintext highlighter-rouge">source ~/mbot_ros_labs/install/setup.bash</code> to your <code class="language-plaintext highlighter-rouge">~/.bashrc</code> file. <strong>This is intentional</strong>. Since we are constantly modifying, rebuilding, sometimes performing “clean builds” of the ROS packages, we need to prevent environment pollution. If terminal always source the workspace automatically, it may hold onto “stale” paths or cached variables from previous builds.</li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>Tips:</strong></p>
+<ol>
+  <li>You are not required to follow the provided TODO comments strictly; they are intended as a helpful guideline for completing the code.</li>
+  <li>After you have implemented the RTR controller, if you want to implement a more sophisticated controller, feel free to do so. We have provided templates for a Pure Pursuit controller and an additional example. To use a different controller, update the includes and the type definition in <code class="language-plaintext highlighter-rouge">controller_node.cpp</code>.</li>
+</ol>
+
+<p><strong>How to test?</strong></p>
+<ol>
+  <li>Run the controller node. This node subscribes to the waypoints topic, and publish the robot body commmand. And the robot body command, is calculated by your motion controller.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">cd</span> ~/mbot_ros_labs
+  <span class="nb">source install</span>/setup.bash
+  ros2 run mbot_nav controller_node
+</code></pre></div>    </div>
+  </li>
+  <li>Run the trajectory publisher. This nodes publish waypoints. By default, this node publishes a square with 1-meter sides. Run this to verify if your robot can accurately navigate a square trajectory.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">cd</span> ~/mbot_ros_labs
+  <span class="nb">source install</span>/setup.bash
+  ros2 run mbot_nav square_publisher
+</code></pre></div>    </div>
+  </li>
+  <li>We use <code class="language-plaintext highlighter-rouge">ctrl + C</code> to quit.</li>
+</ol>
+
+<p><strong>Tips:</strong></p>
+<ul>
+  <li>Always reset odometry between tests. You can either 1) Run the command below or 2) Press the RST button on the control board.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ros2 service call /reset_odometry std_srvs/srv/Trigger
+</code></pre></div>    </div>
+  </li>
+  <li>Why Reset Odometry?
+    <ul>
+      <li>The motion controller and square_publisher both operate in the odom frame right now.</li>
+      <li>The Problem: Your robot rarely finishes exactly at (0, 0, 0). If a run ends at (0, 1, 0) and you restart without resetting, the robot still thinks it is at (0, 1, 0). When you send the first waypoint, the robot won’t drive forward. It will calculate a path from (0, 1, 0) to (1, 0, 0), likely causing an unexpected turn or diagonal movement.</li>
+    </ul>
+  </li>
+</ul>
+
+<p class="required_for_report">Describe the final motion control algorithm you chose to use.
+<br /><br /> To demonstrate the performance in your report:
+<br /> 1) Include a plot of your robot’s estimated pose as the robot is commanded to drive a 1m square 4 times.
+<br /> 2) Include a plot of the robot’s linear and rotational velocity as it drives one loop around the square.</p>
+<h2 id="checkpoint-submission">
+  
+  
+    <a href="#checkpoint-submission" class="anchor-heading" aria-labelledby="checkpoint-submission"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Checkpoint Submission
+  
+  
+</h2>
+    
+<p><br />
+<a class="image-link" href="/f26/assets/images/checkpoints/checkpoint1-maze.png">
+<img src="/f26/assets/images/checkpoints/checkpoint1-maze.png" alt=" " style="max-width:600px;" />
+</a></p>
+
+<ul>
+  <li>Run you motion controller to drive the path show in the image above. Include the following items in your submission:
+    <ol>
+      <li>Record a video of the robot attempting the path at a slow speed (~0.2m/s &amp; pi/4 rad/s) and a high speed (~0.8m/s, pi rad/s) and provide a link to it. The robot motion does NOT need to be perfect</li>
+      <li>Include a plot of the (x, y) odometry position as the robot executes the path at both speeds.</li>
+      <li>Write a short description of your controllers (1/2 page) and any features we should be aware of.</li>
+    </ol>
+  </li>
+</ul>
+
+          
+
+          
+            
+          
+        </main>
+        
+
+  <hr>
+  <footer>
+    
+      <p><a href="#top" id="back-to-top">Back to top</a></p>
+    
+
+    <p class="text-small text-grey-dk-000 mb-0">
+  ROB 330 · The University of Michigan · Fall 2026
+  · <a href="http://localhost:4000/">all semesters</a>
+  <br>
+  Site built with <a href="https://jekyllrb.com">Jekyll</a> and
+  <a href="https://just-the-docs.com">Just the Docs</a>.
+</p>
+
+
+    
+      <div class="d-flex mt-2">
+        
+        
+      </div>
+    
+  </footer>
+
+
+      </div>
+    </div>
+    
+      
+
+<div class="search-overlay"></div>
+
+    
+  </div>
+
+  
+</body>
+</html>
+

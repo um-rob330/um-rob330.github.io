@@ -1,0 +1,868 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+  <link rel="stylesheet" href="/f26/assets/css/just-the-docs-default.css">
+
+  <link rel="stylesheet" href="/f26/assets/css/just-the-docs-head-nav.css" id="jtd-head-nav-stylesheet">
+
+  <style id="jtd-nav-activation">
+  
+
+    .site-nav > ul.nav-list:first-child > li > a,
+    
+    .site-nav > ul.nav-list:first-child > li > ul > li:not(:nth-child(3)) > a,
+    .site-nav > ul.nav-list:first-child > li > ul > li > ul > li a {
+      background-image: none;
+    }
+
+    .site-nav > ul.nav-list:not(:first-child) a,
+    .site-nav li.external a {
+      background-image: none;
+    }
+
+    .site-nav > ul.nav-list:first-child > li:nth-child(6) > ul > li:nth-child(3) > a {
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .site-nav > ul.nav-category-list > li > button svg,
+    .site-nav > ul.nav-list:first-child > li:nth-child(6) > button svg,
+    .site-nav > ul.nav-list:first-child > li:nth-child(6) > ul > li:nth-child(3) > button svg {
+      transform: rotate(-90deg);
+    }
+    .site-nav > ul.nav-category-list > li.nav-list-item > ul.nav-list,
+    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(6) > ul.nav-list,
+    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(6) > ul.nav-list > li.nav-list-item:nth-child(3) > ul.nav-list {
+      display: block;
+    }
+  </style>
+
+  
+
+  
+    <script src="/f26/assets/js/vendor/lunr.min.js"></script>
+  
+
+  <script src="/f26/assets/js/just-the-docs.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+
+
+
+  <!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>MBot System Setup | ROB 330: Localization, Mapping, and Navigation</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="MBot System Setup" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Junior-level course on full-stack autonomous navigation and mapping for mobile robots: odometry, sensor modeling, visual odometry, path planning, and SLAM — implemented on hardware." />
+<meta name="twitter:description" property="og:description" content="Junior-level course on full-stack autonomous navigation and mapping for mobile robots: odometry, sensor modeling, visual odometry, path planning, and SLAM — implemented on hardware." />
+<link rel="canonical" href="http://localhost:4000/f26/resources/mbot-system-setup-pi5/" />
+<meta property="og:url" content="http://localhost:4000/f26/resources/mbot-system-setup-pi5/" />
+<meta property="og:site_name" content="ROB 330: Localization, Mapping, and Navigation" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="MBot System Setup" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","dateModified":"2026-03-06T12:20:00-05:00","description":"Junior-level course on full-stack autonomous navigation and mapping for mobile robots: odometry, sensor modeling, visual odometry, path planning, and SLAM — implemented on hardware.","headline":"MBot System Setup","url":"http://localhost:4000/f26/resources/mbot-system-setup-pi5/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+</head>
+
+<body>
+  <a class="skip-to-main" href="#main-content">Skip to main content</a>
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+  <symbol id="svg-link" viewBox="0 0 24 24">
+  <title>Link</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+  </svg>
+</symbol>
+
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+  <title>Menu</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+    <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+  </svg>
+</symbol>
+
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+  <title>Expand</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+    <polyline points="9 18 15 12 9 6"></polyline>
+  </svg>
+</symbol>
+
+  <!-- Feather. MIT License: https://github.com/feathericons/feather/blob/master/LICENSE -->
+<symbol id="svg-external-link" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link">
+  <title id="svg-external-link-title">(external link)</title>
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line>
+</symbol>
+
+  
+    <symbol id="svg-doc" viewBox="0 0 24 24">
+  <title>Document</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+  </svg>
+</symbol>
+
+    <symbol id="svg-search" viewBox="0 0 24 24">
+  <title>Search</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+    <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+  </svg>
+</symbol>
+
+  
+  
+    <!-- Bootstrap Icons. MIT License: https://github.com/twbs/icons/blob/main/LICENSE.md -->
+<symbol id="svg-copy" viewBox="0 0 16 16">
+  <title>Copy</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+    <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+  </svg>
+</symbol>
+<symbol id="svg-copied" viewBox="0 0 16 16">
+  <title>Copied</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check-fill" viewBox="0 0 16 16">
+    <path d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3Zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3Z"/>
+    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5v-1Zm6.854 7.354-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708Z"/>
+  </svg>
+</symbol>
+
+  
+</svg>
+
+  
+    <div class="side-bar">
+  <div class="site-header" role="banner">
+    <a href="/f26/" class="site-title lh-tight">
+  ROB 330: Localization, Mapping, and Navigation
+
+</a>
+    <button id="menu-button" class="site-button btn-reset" aria-label="Menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><use xlink:href="#svg-menu"></use></svg>
+    </button>
+  </div>
+
+  <nav aria-label="Main" id="site-nav" class="site-nav">
+  
+  
+    <ul class="nav-list"><li class="nav-list-item"><a href="/f26/" class="nav-list-link">Home</a></li><li class="nav-list-item"><a href="/f26/syllabus/" class="nav-list-link">Syllabus</a></li><li class="nav-list-item"><a href="/f26/schedule/" class="nav-list-link">Schedule</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Checkpoints submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/f26/checkpoints/" class="nav-list-link">Checkpoints</a><ul class="nav-list"><li class="nav-list-item"><a href="/f26/checkpoints/checkpoint0/" class="nav-list-link">Checkpoint 0</a></li><li class="nav-list-item"><a href="/f26/checkpoints/checkpoint1/" class="nav-list-link">Checkpoint 1</a></li><li class="nav-list-item"><a href="/f26/checkpoints/checkpoint2/" class="nav-list-link">Checkpoint 2</a></li><li class="nav-list-item"><a href="/f26/checkpoints/checkpoint3/" class="nav-list-link">Checkpoint 3</a></li><li class="nav-list-item"><a href="/f26/checkpoints/checkpoint4/" class="nav-list-link">Checkpoint 4</a></li><li class="nav-list-item"><a href="/f26/checkpoints/checkpoint5/" class="nav-list-link">Checkpoint 5</a></li><li class="nav-list-item"><a href="/f26/checkpoints/competition/" class="nav-list-link">Competition</a></li></ul></li><li class="nav-list-item"><a href="/f26/office-hours/" class="nav-list-link">Office Hours</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Resources submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/f26/resources/" class="nav-list-link">Resources</a><ul class="nav-list"><li class="nav-list-item"><a href="/f26/resources/get-started/" class="nav-list-link">Get Started with ROS MBot</a></li><li class="nav-list-item"><a href="/f26/resources/mbot-hardware-setup-pi5/" class="nav-list-link">MBot Hardware Setup</a></li><li class="nav-list-item"><a href="/f26/resources/mbot-system-setup-pi5/" class="nav-list-link">MBot System Setup</a></li><li class="nav-list-item"><a href="/f26/resources/mbot-hardware-design/" class="nav-list-link">MBot Hardware Design</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="How-to Guide submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/f26/resources/how-to-guide/" class="nav-list-link">How-to Guide</a><ul class="nav-list"><li class="nav-list-item"><a href="/f26/resources/how-to-guide/slam-toolbox-guide/" class="nav-list-link">slam_toolbox Guide</a></li><li class="nav-list-item"><a href="/f26/resources/how-to-guide/mbot-servo-lib-guide/" class="nav-list-link">mbot_servo_lib Guide</a></li><li class="nav-list-item"><a href="/f26/resources/how-to-guide/misc/" class="nav-list-link">Misc</a></li></ul></li></ul></li></ul>
+  <ul class="nav-list"></ul>
+    
+    
+      
+      
+      
+      
+        
+          
+            <ul class="nav-list nav-category-list">
+              <li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Lecture Notes collection" aria-expanded="false">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+                </button><div class="nav-category">Lecture Notes</div>
+                <ul class="nav-list"><li class="nav-list-item"><a href="/f26/lectures/lecture-01/" class="nav-list-link">01 — Course overview and motivation</a></li></ul>
+              </li>
+            </ul>
+          
+        
+      
+    
+  
+</nav>
+
+
+
+
+  
+  
+    <footer class="site-footer">
+      This site uses <a href="https://github.com/just-the-docs/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.
+    </footer>
+  
+</div>
+
+  
+  <div class="main" id="top">
+    <div id="main-header" class="main-header">
+  
+    
+
+<div class="search" role="search">
+  <div class="search-input-wrap">
+    <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search ROB 330: Localization, Mapping, and Navigation" autocomplete="off">
+    <label for="search-input" class="search-label">
+      <span class="sr-only">Search ROB 330: Localization, Mapping, and Navigation</span>
+      <svg viewBox="0 0 24 24" class="search-icon" aria-hidden="true"><use xlink:href="#svg-search"></use></svg>
+    </label>
+  </div>
+  <div id="search-results" class="search-results"></div>
+</div>
+
+  
+  
+  
+    <nav aria-label="Auxiliary" class="aux-nav">
+  <ul class="aux-nav-list">
+    
+      <li class="aux-nav-list-item">
+        <a href="https://canvas.it.umich.edu/" class="site-button"
+          
+        >
+          Canvas
+        </a>
+      </li>
+    
+      <li class="aux-nav-list-item">
+        <a href="https://piazza.com/umich/fall2026/rob330fa2026/home" class="site-button"
+          
+        >
+          Piazza
+        </a>
+      </li>
+    
+      <li class="aux-nav-list-item">
+        <a href="https://drive.google.com/drive/folders/1ZYIDd03sRtkSddDVlESq2QoCIzSGEajw?usp=drive_link" class="site-button"
+          
+        >
+          Google Drive
+        </a>
+      </li>
+    
+      <li class="aux-nav-list-item">
+        <a href="https://github.com/rob330/rob330.github.io" class="site-button"
+          
+        >
+          GitLab
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+  
+</div>
+
+    <div class="main-content-wrap">
+      <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+  <ol class="breadcrumb-nav-list">
+    <li class="breadcrumb-nav-list-item"><a href="/f26/resources/">Resources</a></li>
+    <li class="breadcrumb-nav-list-item"><span>MBot System Setup</span></li>
+  </ol>
+</nav>
+
+
+      <div id="main-content" class="main-content">
+        <main>
+          
+            <p>The following items are needed:</p>
+<ol>
+  <li>microSD card</li>
+  <li>SD adapter</li>
+  <li>A laptop can read and write SD card</li>
+</ol>
+
+<p><strong>Notice #1</strong>: You do not need an external monitor during the set up process. However, if you want to connect to external monitor at any point, you need to plug into <strong>HDMI-0 port</strong>. The Pi5 has 2 HDMI ports, plug into the one closer to USB C port.</p>
+
+<p><strong>Notice #2</strong>: This guide will walk you through the steps needed to setup the MBot Classic system. The guide is intended to be followed in order, do not jump back and forth.</p>
+<h3 id="contents">
+  
+  
+    <a href="#contents" class="anchor-heading" aria-labelledby="contents"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Contents
+  
+  
+</h3>
+    
+<ul id="markdown-toc">
+  <li><a href="#contents" id="markdown-toc-contents">Contents</a></li>
+  <li><a href="#set-up-rpi-5-system" id="markdown-toc-set-up-rpi-5-system">Set up RPi 5 System</a>    <ul>
+      <li><a href="#1-flash-the-image" id="markdown-toc-1-flash-the-image">1. Flash the image</a></li>
+      <li><a href="#2-set-up-system-utilities" id="markdown-toc-2-set-up-system-utilities">2. Set up system utilities</a></li>
+      <li><a href="#3-boot-the-pi5" id="markdown-toc-3-boot-the-pi5">3. Boot the Pi5</a></li>
+      <li><a href="#41-connect-to-the-internet-on-um-campus---mwireless" id="markdown-toc-41-connect-to-the-internet-on-um-campus---mwireless">4.1 Connect to the Internet on UM Campus - MWireless</a></li>
+      <li><a href="#42-connect-to-the-internet-at-home" id="markdown-toc-42-connect-to-the-internet-at-home">4.2 Connect to the Internet at Home</a></li>
+      <li><a href="#5-remote-access" id="markdown-toc-5-remote-access">5. Remote Access</a></li>
+      <li><a href="#6-change-your-mbots-password" id="markdown-toc-6-change-your-mbots-password">6. Change your mbot’s password</a></li>
+    </ul>
+  </li>
+  <li><a href="#flash-mbot-firmware" id="markdown-toc-flash-mbot-firmware">Flash MBot firmware</a>    <ul>
+      <li><a href="#1-compile-the-firmware" id="markdown-toc-1-compile-the-firmware">1. Compile the firmware</a></li>
+      <li><a href="#2-calibrate-the-mbot-and-flash-the-firmware" id="markdown-toc-2-calibrate-the-mbot-and-flash-the-firmware">2. Calibrate the MBot and flash the firmware</a></li>
+      <li><a href="#3-minicom-to-verify-the-flash-operation" id="markdown-toc-3-minicom-to-verify-the-flash-operation">3. Minicom to verify the flash operation</a></li>
+    </ul>
+  </li>
+  <li><a href="#drive-the-mbot" id="markdown-toc-drive-the-mbot">Drive the mbot</a></li>
+  <li><a href="#setup-mbot_ws" id="markdown-toc-setup-mbot_ws">Setup mbot_ws</a></li>
+  <li><a href="#test-camera" id="markdown-toc-test-camera">Test Camera</a></li>
+  <li><a href="#test-lidar" id="markdown-toc-test-lidar">Test LiDAR</a></li>
+  <li><a href="#install-and-test-foxglove" id="markdown-toc-install-and-test-foxglove">Install and test foxglove</a></li>
+  <li><a href="#useful-commands" id="markdown-toc-useful-commands">Useful commands</a>    <ul>
+      <li><a href="#turn-lidar-onoff" id="markdown-toc-turn-lidar-onoff">Turn LiDAR ON/OFF</a></li>
+      <li><a href="#reset-odometry" id="markdown-toc-reset-odometry">Reset odometry</a></li>
+    </ul>
+  </li>
+</ul>
+<h2 id="set-up-rpi-5-system">
+  
+  
+    <a href="#set-up-rpi-5-system" class="anchor-heading" aria-labelledby="set-up-rpi-5-system"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Set up RPi 5 System
+  
+  
+</h2>
+    
+<h3 id="1-flash-the-image">
+  
+  
+    <a href="#1-flash-the-image" class="anchor-heading" aria-labelledby="1-flash-the-image"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1. Flash the image
+  
+  
+</h3>
+    
+<ol>
+  <li>Download the custom image <code class="language-plaintext highlighter-rouge">2026-01-15-mbot-ros2-base-ubuntu24.img.gz</code> from this <a href="https://www.dropbox.com/scl/fi/1ikeu5tf3qwdb0fjo6o3v/2026-01-15-mbot-ros2-base-ubuntu24.img.gz?rlkey=rtsieyxcbuzksxb2z63eieyla&amp;st=42v6g0wq&amp;dl=0">link</a> to your laptop.</li>
+  <li>Download <a href="https://etcher.balena.io/">Balena Etcher</a> to your laptop, it is a tool to flash the OS image to the SD card. Plug in the SD card to your laptop using SD card reader then following the steps in Balena Etcher. (The image is 18GB, this can take 15 min).</li>
+</ol>
+
+<p>Once you have the SD card with the OS image flashed on it, don’t insert the SD card in the Pi 5 yet, continue to the next step.</p>
+
+<p class="warning">If you do the flashing on a Windows computer, you may see many file explorer windows and error messages pop up when you insert the SD card and when you finish flashing. Those are expected, and you can safely close the file explorer windows and dismiss the error messages. However, if Windows asks you to format the SD card through a popup dialog box, close the message through the “Cancel” button and <strong>do not</strong> click the “Format Disk” button.</p>
+<h3 id="2-set-up-system-utilities">
+  
+  
+    <a href="#2-set-up-system-utilities" class="anchor-heading" aria-labelledby="2-set-up-system-utilities"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 2. Set up system utilities
+  
+  
+</h3>
+    
+
+<p>If the flash was successful, insert the SD card into your laptop, you should see a folder named “system-boot” or something similar based on your laptop’s OS.</p>
+
+<p>Find the file <code class="language-plaintext highlighter-rouge">mbot_config.txt</code> on this volume and modify it as follows:</p>
+<ul>
+  <li>Set <code class="language-plaintext highlighter-rouge">mbot_hostname</code> following this format: <code class="language-plaintext highlighter-rouge">mbot-&lt;section&gt;-&lt;team#&gt;-&lt;unique_name&gt;</code>
+    <ul>
+      <li>For example: if you are in the AM section team 6, and your unique_name is johndoe, you should name the robot as <code class="language-plaintext highlighter-rouge">mbot-AM-team6-johndoe</code></li>
+    </ul>
+  </li>
+  <li>Enter your home Wi-Fi details for <code class="language-plaintext highlighter-rouge">new_wifi_ssid</code> and <code class="language-plaintext highlighter-rouge">new_wifi_password</code> if you intend to use it at home later.</li>
+  <li>Leave all other variables unchanged.</li>
+</ul>
+
+<p>Then save the file. Now you can eject the SD card.</p>
+<h3 id="3-boot-the-pi5">
+  
+  
+    <a href="#3-boot-the-pi5" class="anchor-heading" aria-labelledby="3-boot-the-pi5"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 3. Boot the Pi5
+  
+  
+</h3>
+    
+<ol>
+  <li>
+    <p>Insert the SD card into your Pi5. The SD card slot is located on the bottom on the side opposite the USB ports.</p>
+
+    <p><a class="image-link" href="https://projects-static.raspberrypi.org/projects/raspberry-pi-setting-up/94c43714c0e0536158409093ba28931e0fa5c9bc/en/images/pi-sd.png">
+ <img src="https://projects-static.raspberrypi.org/projects/raspberry-pi-setting-up/94c43714c0e0536158409093ba28931e0fa5c9bc/en/images/pi-sd.png" alt="Image from RPi Foundation" style="max-width:300px;" />
+ </a></p>
+  </li>
+  <li>Turn on the power bank and ensure that the power cables are connected as per the <a href="https://mbot.robotics.umich.edu/docs/hardware/classic/assembly/mbot-wiring/">assembly guide</a>.</li>
+  <li>
+    <p><strong>Wait for about 1 minute until the OLED screen lights up</strong> like the image below, where the IP should be something like <code class="language-plaintext highlighter-rouge">192.168.X.X</code> meaning it is part of a local network and not directly accessible from the public internet. Once you see this, you can proceed to the next step.</p>
+
+    <p><a class="image-link" href="/f26/assets/images/resources/system-setup/system-setup-oled.jpg">
+ <img src="/f26/assets/images/resources/system-setup/system-setup-oled.jpg" alt="" style="max-width:300px;" />
+ </a></p>
+  </li>
+</ol>
+<h3 id="41-connect-to-the-internet-on-um-campus---mwireless">
+  
+  
+    <a href="#41-connect-to-the-internet-on-um-campus---mwireless" class="anchor-heading" aria-labelledby="41-connect-to-the-internet-on-um-campus---mwireless"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 4.1 Connect to the Internet on UM Campus - MWireless
+  
+  
+</h3>
+    
+<p><strong>Video Demo:</strong></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FF700eSdS6g?si=5K4xI6k8Y4ttyCH1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
+
+<p><strong>Steps:</strong></p>
+<ol>
+  <li>Connect to the MBot’s local access point. See the instructions on the official MBot website <a href="https://mbot.robotics.umich.edu/docs/setup/networking/#connecting-to-the-mbots-access-point">here</a> under the “Connecting to the MBot’s Access Point” section.</li>
+  <li>Use NoMachine to access the MBot. Follow the instructions on the official MBot website <a href="https://mbot.robotics.umich.edu/docs/tutorials/no-machine/">here</a>.</li>
+  <li>Connect the MBot to the Internet. Open a terminal in the NoMachine desktop and run the following commands to connect the MBot to the Internet:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">cd</span> ~
+ ./SecureW2_JoinNow.run
+</code></pre></div>    </div>
+  </li>
+  <li>When prompted for your unique name and password, use the 550 course credentials, it will be distributed during lab. Avoid using your own UM credentials for your privacy safety.</li>
+  <li>After entering your credentials, NoMachine will disconnect during the process. Close the NoMachine window and wait for about 1 minute. Check the OLED screen to see if the IP address has changed from <code class="language-plaintext highlighter-rouge">192.168.X.X</code> to a different one. This indicates that the MBot has successfully connected to the Internet.
+    <ul>
+      <li>If the OLED screen says “IP Not Found” or “Error” and has been that way for over two minutes, you aren’t connected to the network, you might have typo when input the UM account password, find GSIs and ask to connect to an external monitor.</li>
+      <li>If you encountered issue with “license expired”, use the following command to set the time back one year to trick the script:
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo date</span> <span class="nt">-s</span> <span class="s2">"2025-01-01 12:00:00"</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+<h3 id="42-connect-to-the-internet-at-home">
+  
+  
+    <a href="#42-connect-to-the-internet-at-home" class="anchor-heading" aria-labelledby="42-connect-to-the-internet-at-home"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 4.2 Connect to the Internet at Home
+  
+  
+</h3>
+    
+<ol>
+  <li>
+    <p>Ensure the <code class="language-plaintext highlighter-rouge">new_wifi_ssid</code> and <code class="language-plaintext highlighter-rouge">new_wifi_password</code> are correctly set in the <code class="language-plaintext highlighter-rouge">mbot_config.txt</code> file (check for any typos). They should be your home wifi name, and home wifi password.</p>
+  </li>
+  <li>
+    <p>Start the MBot, wait for about 1~2 minute, please be patient. You may hear the fan start a couple of times, and eventually, the OLED screen will display the MBot’s IP address (since you are at home, the IP be <code class="language-plaintext highlighter-rouge">192.168.x.x</code> is normal unlike on campus), meaning the mbot is connected to your home Wi-Fi.</p>
+  </li>
+</ol>
+
+<p>If you have successfully connected your MBot to MWireless or your home Wi-Fi, you can use its IP address to remotely access the MBot. From now on, you can always find the IP address on the OLED screen. Proceed to the next step for more details.</p>
+<h3 id="5-remote-access">
+  
+  
+    <a href="#5-remote-access" class="anchor-heading" aria-labelledby="5-remote-access"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 5. Remote Access
+  
+  
+</h3>
+    
+<p class="text-red-200"><strong>At this point, your laptop functions only as a gateway for the SSH connection to your MBot. All programming is executed on the MBot, all the commands should be run in the MBot terminal, not on your laptop.</strong></p>
+
+<p>To access the mbot, your laptop and the MBot must always be on the same network. And there are 2 options to connect:</p>
+<ol>
+  <li>Using VSCode (Recommended), here is the tutorail: <a href="https://mbot.robotics.umich.edu/docs/tutorials/vscode/#connecting-to-the-robot">link</a></li>
+  <li>Using NoMachine, here is the tutorail: <a href="https://mbot.robotics.umich.edu/docs/tutorials/no-machine/">link</a></li>
+</ol>
+
+<p class="note">Username: mbot <br />
+Password: i&lt;3robots!</p>
+<h3 id="6-change-your-mbots-password">
+  
+  
+    <a href="#6-change-your-mbots-password" class="anchor-heading" aria-labelledby="6-change-your-mbots-password"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 6. Change your mbot’s password
+  
+  
+</h3>
+    
+
+<p>For mbot network security, you may change your password once you have set up your mbot. The default password is <code class="language-plaintext highlighter-rouge">i&lt;3robots!</code>, which everyone uses. Here’s how to change your mbot’s password:</p>
+<ol>
+  <li>SSH to the mbot using VSCode or your laptop terminal.</li>
+  <li>Enter this command in the mbot terminal: <code class="language-plaintext highlighter-rouge">passwd</code>. You will be prompted to enter your current password.</li>
+  <li>Next, you will be asked to enter your new password and retype it to confirm.</li>
+  <li>
+    <p>If the passwords match, you will see a message indicating that your password has been updated successfully.</p>
+
+    <p>The output will look like this:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> mbot@mbot-0018-shaw:~ <span class="nv">$ </span> passwd
+ Changing password <span class="k">for </span>mbot.
+ Current password:
+ New password:
+ Retype new password:
+ passwd: password updated successfully
+</code></pre></div>    </div>
+  </li>
+</ol>
+<h2 id="flash-mbot-firmware">
+  
+  
+    <a href="#flash-mbot-firmware" class="anchor-heading" aria-labelledby="flash-mbot-firmware"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Flash MBot firmware
+  
+  
+</h2>
+    
+<p>In this session, we are going to work on setup of the Control Board, which is the board located at the bottom of the mbot.</p>
+<h3 id="1-compile-the-firmware">
+  
+  
+    <a href="#1-compile-the-firmware" class="anchor-heading" aria-labelledby="1-compile-the-firmware"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1. Compile the firmware
+  
+  
+</h3>
+    
+<ol>
+  <li>Go to the Class <strong>GitLab</strong> page, and find <code class="language-plaintext highlighter-rouge">mbot_firmware_ros</code> repository.</li>
+  <li>Fork it to your GitLab group.</li>
+  <li>Clone the forked repository to your home directory.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c"># cd to the home directory</span>
+ <span class="nb">cd</span> ~
+ git clone your_group_forked_url
+</code></pre></div>    </div>
+    <ul>
+      <li>When we say <code class="language-plaintext highlighter-rouge">your_group_forked_url</code>, we mean the URL shown in the image. Go to your group’s forked repository on GitLab, click Code, and copy that URL.
+ <a class="image-link" href="/f26/assets/images/resources/system-setup/gitlab-group-url.png">
+ <img src="/f26/assets/images/resources/system-setup/gitlab-group-url.png" alt="" style="max-width:300px;" />
+ </a></li>
+    </ul>
+  </li>
+  <li>Compile the firmware files.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c"># cd to the firmware folder</span>
+ <span class="nb">cd</span> ~/mbot_firmware_ros
+ <span class="c"># create the build folder</span>
+ <span class="nb">mkdir </span>build
+ <span class="nb">cd </span>build
+ <span class="c"># compile the firmware</span>
+ cmake ..
+ make
+</code></pre></div>    </div>
+    <ul>
+      <li>After it’s done, <code class="language-plaintext highlighter-rouge">~/mbot_firmware_ros/build</code> directory is going to have all the executables we need.</li>
+    </ul>
+  </li>
+</ol>
+<h3 id="2-calibrate-the-mbot-and-flash-the-firmware">
+  
+  
+    <a href="#2-calibrate-the-mbot-and-flash-the-firmware" class="anchor-heading" aria-labelledby="2-calibrate-the-mbot-and-flash-the-firmware"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 2. Calibrate the MBot and flash the firmware
+  
+  
+</h3>
+    
+<p>In this step, we are going to calibrate the mbot and then flash the firmware.</p>
+
+<ol>
+  <li><strong>Place the MBot on the floor</strong> in a spot with at least 2 feet of clear space around the robot, preferably on the same type of surface you plan to use it on.</li>
+  <li>First, flash the calibration file to calibrate your MBot.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">cd</span> ~/mbot_firmware_ros/build
+ <span class="nb">sudo </span>mbot-upload-firmware flash mbot_calibrate_classic.uf2
+</code></pre></div>    </div>
+    <p><code class="language-plaintext highlighter-rouge">mbot_calibrate_classic.uf2</code> is one of the files we compiled from step 1. Expected output:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">$ </span><span class="nb">sudo </span>mbot-upload-firmware flash mbot_calibrate_classic.uf2
+ <span class="o">[</span><span class="nb">sudo</span><span class="o">]</span> password <span class="k">for </span>mbot: 
+ Detected Raspberry Pi 5, entering flash mode...
+ Flashing action <span class="k">for </span>mbot_calibrate_classic.uf2...
+ Loading into Flash:   <span class="o">[==============================]</span>  100%
+ The device was rebooted into application mode.
+</code></pre></div>    </div>
+
+    <p>Here is a video showing the expected calibration routine:</p>
+
+    <iframe width="400" height="227" src="https://www.youtube.com/embed/iIghZzf8ZQY?si=w_ultg6PtCwJVr2_" title="YouTube video player" frameborder="2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+    <ul>
+      <li><strong>Allow the Pico to finish its calibration routine without interference.</strong> The calibration script will save the parameters onto the Pico’s memory.</li>
+    </ul>
+  </li>
+  <li>Then, you can flash the firmware that will run on the Pico during operation.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>mbot-upload-firmware flash mbot_classic_ros.uf2 
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>If you didn’t see the expected output above, but having the following output:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>No accessible RP-series devices <span class="k">in </span>BOOTSEL mode were found.
+</code></pre></div></div>
+<ol>
+  <li>Check if all the cables are connected correctly (USB-C from Pico to Pi; Pico’s power cable; the GREEN/WHITE jumper wire to the control board).</li>
+  <li>If all the cables are connected, please use the “Manual Boot Mode” in this <a href="https://mbot.robotics.umich.edu/docs/setup/firmware/#1-manual-boot-mode">tutorial</a> to flash the firmware.</li>
+</ol>
+<h3 id="3-minicom-to-verify-the-flash-operation">
+  
+  
+    <a href="#3-minicom-to-verify-the-flash-operation" class="anchor-heading" aria-labelledby="3-minicom-to-verify-the-flash-operation"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 3. Minicom to verify the flash operation
+  
+  
+</h3>
+    
+
+<p>Minicom is a program designed for serial communication that connects devices to a Linux PC via serial ports, we will use Minicom to read the pico printouts during the flash process.</p>
+<ul>
+  <li>After flashing the firmware to the Pico, run the following command to start minicom
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">sudo </span>minicom <span class="nt">-D</span> /dev/mbot_debug <span class="nt">-b</span> 115200
+</code></pre></div>    </div>
+    <p>You should see output like this:</p>
+
+    <p><a class="image-link" href="/f26/assets/images/resources/system-setup/minicom-table.png">
+  <img src="/f26/assets/images/resources/system-setup/minicom-table.png" alt="" style="max-width:300px;" />
+  </a></p>
+    <ul>
+      <li><strong>Successful Firmware Flashing:</strong> After flashing the firmware successfully, Minicom will display the table above. Manually turning the wheel will update the encoder counts in the Minicom terminal. All these are calculated and displayed by the firmware.
+        <ul>
+          <li><strong>Common confusion:</strong> When both wheels rotate forward, the left wheel encoder counts and motor velocity (<code class="language-plaintext highlighter-rouge">ENC L</code> and <code class="language-plaintext highlighter-rouge">MOT L</code>) increase positively, while <code class="language-plaintext highlighter-rouge">ENC R</code> and <code class="language-plaintext highlighter-rouge">MOT R</code> are negative. Why aren’t they both positive?
+            <ul>
+              <li>This is the expected behavior. The wheel frames have their z-axes pointing outward, so based on right hand rule, rotating the right wheel forward corresponds to a negative rotation about its local z-axis. One purpose of calibration is to ensure the signs are correct and consistent with the coordinate definitions.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Unsuccessful Firmware Flashing:</strong> If the firmware doesn’t flash correctly, repeat the calibration and firmware flashing steps. This time, open a second terminal window with Minicom running, so we can monitor its outputs for debugging. If there was an error, take a screenshot and send to the GSIs for better troubleshooting.</li>
+    </ul>
+  </li>
+  <li><strong>To exit Minicom</strong>, press <code class="language-plaintext highlighter-rouge">CTRL + A</code>, then press <code class="language-plaintext highlighter-rouge">X</code>, then press <code class="language-plaintext highlighter-rouge">Enter</code> to quit.</li>
+</ul>
+<h2 id="drive-the-mbot">
+  
+  
+    <a href="#drive-the-mbot" class="anchor-heading" aria-labelledby="drive-the-mbot"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Drive the mbot
+  
+  
+</h2>
+    
+<p>Run the following command in the VSCode terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ros2 run teleop_twist_keyboard teleop_twist_keyboard
+</code></pre></div></div>
+<ul>
+  <li>Press <code class="language-plaintext highlighter-rouge">x</code> a few times to reduce the linear speed to 0.2, so the robot doesn’t sprint out.</li>
+  <li>Use your keyboard to drive the robot. As shown in the terminal:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">i</code> = forward</li>
+      <li><code class="language-plaintext highlighter-rouge">,</code> = backward</li>
+      <li><code class="language-plaintext highlighter-rouge">j</code> = turn left</li>
+      <li><code class="language-plaintext highlighter-rouge">l</code> = turn right</li>
+    </ul>
+  </li>
+</ul>
+
+<p>If you’ve successfully driven your robot around, your control board setup is complete!</p>
+<ul>
+  <li>If the robot does not drive straight forward when you press <code class="language-plaintext highlighter-rouge">i</code> and instead turns, but your calibration results look correct and the minicom table shows reasonable motor velocities, then the issue is likely related to the PID gains. We will address PID tuning in <strong>Checkpoint 1</strong>, so don’t worry about this for now.</li>
+</ul>
+<h2 id="setup-mbot_ws">
+  
+  
+    <a href="#setup-mbot_ws" class="anchor-heading" aria-labelledby="setup-mbot_ws"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Setup mbot_ws
+  
+  
+</h2>
+    
+<blockquote>
+  <p>This repository contains hardware ROS drivers, custom ROS messages, MBot URDF files, and the other ROS packages.</p>
+</blockquote>
+
+<ol>
+  <li>Go to the Class <strong>GitLab</strong> page, fork the <code class="language-plaintext highlighter-rouge">mbot_ros2_ws</code> repository to your group, and clone it to your mbot home directory.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">cd</span> ~
+ <span class="nb">mkdir </span>mbot_ws
+ <span class="nb">cd</span> ~/mbot_ws
+ git clone <span class="nt">--recurse-submodules</span> your_group_url src
+</code></pre></div>    </div>
+    <ul>
+      <li>The repository is called <code class="language-plaintext highlighter-rouge">mbot_ros2_ws</code>, but here we clone it into <code class="language-plaintext highlighter-rouge">~/mbot_ws/src</code>, the repo’s name is irrelevant.</li>
+    </ul>
+  </li>
+  <li>Run the following commands:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">cd</span> ~/mbot_ws
+ <span class="c"># Update package list</span>
+ <span class="nb">sudo </span>apt update
+ <span class="c"># install ros dependencies</span>
+ rosdep <span class="nb">install</span> <span class="nt">-y</span> <span class="nt">--from-paths</span> src <span class="nt">--ignore-src</span> <span class="nt">--rosdistro</span> <span class="nv">$ROS_DISTRO</span> <span class="nt">--skip-keys</span><span class="o">=</span>libcamera
+ <span class="c"># build the packages</span>
+ colcon build <span class="nt">--symlink-install</span>
+ <span class="c"># source the env</span>
+ <span class="nb">echo</span> <span class="s2">"source </span><span class="nv">$PWD</span><span class="s2">/install/local_setup.bash"</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+ <span class="nb">source install</span>/local_setup.bash
+</code></pre></div>    </div>
+    <ul>
+      <li>There might be warnings after running colcon build from sllidar_ros2 package: <code class="language-plaintext highlighter-rouge">1 package had stderr output: sllidar_ros2</code>, it is normal, if you re-run the command the warnings will be gone.</li>
+    </ul>
+  </li>
+</ol>
+<h2 id="test-camera">
+  
+  
+    <a href="#test-camera" class="anchor-heading" aria-labelledby="test-camera"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Test Camera
+  
+  
+</h2>
+    
+
+<p>Test your camera by going through the following steps in order. <strong>If any of the steps produce unexpected results, contact the GSIs for assistance.</strong></p>
+
+<ol>
+  <li>To test if camera is detected, run this in the <strong>VSCode terminal</strong>:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rpicam-hello
+</code></pre></div>    </div>
+    <ul>
+      <li>If the terminal didn’t say “ERROR: <em>** no cameras available **</em>”, your camera is detected. Everything is good, use <code class="language-plaintext highlighter-rouge">ctrl+C</code> to quit.</li>
+    </ul>
+  </li>
+  <li>To test if camera is working, run:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ~
+rpicam-still <span class="nt">-t</span> 1 <span class="nt">-o</span> test.jpg
+</code></pre></div>    </div>
+    <ul>
+      <li>This will take a photo and save it in the home directory, you can use VSCode to check the photo. The photo will be upside-down, that’s expected.</li>
+    </ul>
+  </li>
+  <li>To test if camera ROS driver is working, run the following in the <strong>VSCode terminal</strong>:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c"># bring up the camera node and flip the image</span>
+ ros2 run camera_ros camera_node <span class="nt">--ros-args</span> <span class="se">\</span>
+ <span class="nt">-p</span> orientation:<span class="o">=</span>180 <span class="se">\</span>
+ <span class="nt">-p</span> width:<span class="o">=</span>640 <span class="nt">-p</span> height:<span class="o">=</span>480 <span class="se">\</span>
+ <span class="nt">-p</span> format:<span class="o">=</span>BGR888
+</code></pre></div>    </div>
+    <ul>
+      <li><strong>Ignore</strong> the errors about calibration files.</li>
+      <li>You can visualize the camera view in rqt on NoMachine desktop. Run the following in the <strong>NoMachine Terminal</strong>:
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ros2 run rqt_image_view rqt_image_view
+</code></pre></div>        </div>
+      </li>
+      <li>Select the image topic <code class="language-plaintext highlighter-rouge">/camera/image_raw</code></li>
+    </ul>
+  </li>
+</ol>
+
+<p class="warning"><strong>Do not hot-swap the camera!</strong> Hot swap will leave the camera on ghost state. If you need to replace the camera, the correct procedure is: Power OFF → Wait 30 seconds → Swap cameras or Re-insert ribbon cable → Power ON</p>
+<h2 id="test-lidar">
+  
+  
+    <a href="#test-lidar" class="anchor-heading" aria-labelledby="test-lidar"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Test LiDAR
+  
+  
+</h2>
+    
+<ol>
+  <li>Run the following in the <strong>VSCode terminal</strong>:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ros2 launch mbot_bringup mbot_bringup.launch.py 
+</code></pre></div>    </div>
+    <ul>
+      <li>This will bring up the lidar driver, the robot description for visualization, and the static tf.</li>
+    </ul>
+  </li>
+  <li>Run the following in the <strong>NoMachine Terminal</strong>:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ros2 launch mbot_bringup mbot_viz.launch.py
+</code></pre></div>    </div>
+    <p>You should see the RViz open up with the robot model and the LiDAR scan show up. And if you look closely, the lidar scan is actually “floating”, because it is shooting out from the lidar frame.</p>
+
+    <p><a class="image-link" href="/f26/assets/images/resources/system-setup/rviz0.png">
+ <img src="/f26/assets/images/resources/system-setup/rviz0.png" alt="Image from RPi Foundation" style="max-width:600px;" />
+ </a></p>
+  </li>
+</ol>
+<h2 id="install-and-test-foxglove">
+  
+  
+    <a href="#install-and-test-foxglove" class="anchor-heading" aria-labelledby="install-and-test-foxglove"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Install and test foxglove
+  
+  
+</h2>
+    
+<p>Install Foxglove bridge, a web-based visualization tool as <strong>an alternative to NoMachine</strong>. Use foxglove will save at least 50% CPU usage.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt update
+<span class="nb">sudo </span>apt <span class="nb">install </span>ros-<span class="nv">$ROS_DISTRO</span><span class="nt">-foxglove-bridge</span>
+</code></pre></div></div>
+
+<p>Test:</p>
+<ol>
+  <li>Go to: <a href="https://app.foxglove.dev/">foxglove</a> -&gt; Sign in with Google -&gt; Sign in with you UM account</li>
+  <li>Run the Foxglove bridge in the <strong>VSCode terminal</strong>:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ros2 launch foxglove_bridge foxglove_bridge_launch.xml
+</code></pre></div>    </div>
+  </li>
+  <li>Run the following in the <strong>VSCode terminal</strong>:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ros2 launch mbot_bringup mbot_bringup.launch.py 
+</code></pre></div>    </div>
+  </li>
+  <li>Open connection -&gt; Foxglove WebSocket -&gt; Replace <code class="language-plaintext highlighter-rouge">localhost</code> with your IP address -&gt; Open</li>
+  <li>If you use chrome, foxglove will pop up a window, follow the instruction there.</li>
+</ol>
+
+<p>Demo video:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xWfMV1e5gKg?si=ucnY2If-2owgw8bM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
+<h2 id="useful-commands">
+  
+  
+    <a href="#useful-commands" class="anchor-heading" aria-labelledby="useful-commands"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Useful commands
+  
+  
+</h2>
+    
+<h3 id="turn-lidar-onoff">
+  
+  
+    <a href="#turn-lidar-onoff" class="anchor-heading" aria-labelledby="turn-lidar-onoff"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Turn LiDAR ON/OFF
+  
+  
+</h3>
+    
+<p class="text-red-200">This LiDAR switch command is for the mbots that have done the <a href="/f26/resources/mbot-hardware-setup-pi5/">hardware setup</a>, in which the LiDAR is powered through the Bottom Board’s SV3 slot.</p>
+
+<p>If you don’t need the LiDAR but it keeps spinning (which is loud and drains the power bank), you can turn it off using the following command:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Turn the power off</span>
+ros2 service call /lidar_power std_srvs/srv/SetBool <span class="s2">"{data: false}"</span>
+</code></pre></div></div>
+<p>To turn the LiDAR back on:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Turn the power on</span>
+ros2 service call /lidar_power std_srvs/srv/SetBool <span class="s2">"{data: true}"</span>
+</code></pre></div></div>
+<h3 id="reset-odometry">
+  
+  
+    <a href="#reset-odometry" class="anchor-heading" aria-labelledby="reset-odometry"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Reset odometry
+  
+  
+</h3>
+    
+<p>If you need to re-run motion controller test, or slam test, or any tests, and the odometry has already accumulated drift, you can reset all odometry calculations back to zero by:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ros2 service call /reset_odometry std_srvs/srv/Trigger
+</code></pre></div></div>
+
+          
+
+          
+            
+          
+        </main>
+        
+
+  <hr>
+  <footer>
+    
+      <p><a href="#top" id="back-to-top">Back to top</a></p>
+    
+
+    <p class="text-small text-grey-dk-000 mb-0">
+  ROB 330 · The University of Michigan · Fall 2026
+  · <a href="http://localhost:4000/">all semesters</a>
+  <br>
+  Site built with <a href="https://jekyllrb.com">Jekyll</a> and
+  <a href="https://just-the-docs.com">Just the Docs</a>.
+</p>
+
+
+    
+      <div class="d-flex mt-2">
+        
+        
+      </div>
+    
+  </footer>
+
+
+      </div>
+    </div>
+    
+      
+
+<div class="search-overlay"></div>
+
+    
+  </div>
+
+  
+</body>
+</html>
+

@@ -1,0 +1,86 @@
+{%- comment -%}
+  Renders one course-staff role section: a heading plus a grid of circular cards.
+
+  Usage:
+    {% include staff_group.html group=site.data.staff.instructor heading="Instructor" %}
+
+  Params:
+    group    - array from _data/staff.yml (required)
+    heading  - section heading text (required)
+    level    - heading level, 2 or 3 (default 3)
+
+  Each person renders as: circular avatar -> name -> optional title -> email.
+  If `photo` is empty, a navy circle with the person's initials is drawn, so the
+  layout looks intentional before any headshot exists.
+{%- endcomment -%}
+
+{%- assign hl = include.level | default: 3 -%}
+
+{%- if include.group and include.group.size > 0 -%}
+<section class="staff-section">
+  <h{{ hl }} class="staff-section__heading" id="{{ include.heading | slugify }}">{{ include.heading }}</h{{ hl }}>
+
+  <ul class="staff-grid">
+    {%- for person in include.group -%}
+      {%- comment -%}
+        Initials from the FIRST and LAST name words — not the first two. A middle
+        name or a quoted nickname ('Ashrith "Ash" Edukulla') would otherwise give
+        the wrong second letter, or a punctuation mark. Quotes are stripped first
+        so a nickname can never contribute a `"` to the avatar.
+      {%- endcomment -%}
+      {%- assign clean = person.name | strip | replace: '"', '' | replace: "'", '' -%}
+      {%- assign words = clean | split: " " -%}
+      {%- assign initials = words | first | slice: 0, 1 | upcase -%}
+      {%- if words.size > 1 -%}
+        {%- assign last_initial = words | last | slice: 0, 1 | upcase -%}
+        {%- assign initials = initials | append: last_initial -%}
+      {%- endif -%}
+
+      <li class="staff-card">
+        {%- if person.photo and person.photo != "" -%}
+          {%- comment -%}
+            Two things this single line is protecting against:
+
+            1. Never put a Liquid tag between HTML attributes. The trimming
+               form of a Liquid tag eats the newline that separates them,
+               which produced src="..."alt="..." — malformed markup that
+               kramdown refuses to treat as HTML and escapes into visible
+               text on the page. One line makes that impossible.
+            2. escape on alt is required, not decorative: a name containing
+               double quotes would otherwise close the attribute early.
+          {%- endcomment -%}
+          <img class="staff-card__avatar" src="{{ person.photo | prepend: '/assets/images/staff/' | relative_url }}" alt="{{ person.name | escape }}" loading="lazy" width="140" height="140">
+        {%- else -%}
+          <div class="staff-card__avatar staff-card__initials" aria-hidden="true">
+            <span>{{ initials | default: "?" }}</span>
+          </div>
+        {%- endif -%}
+
+        <p class="staff-card__name">
+          {%- comment -%}
+            Only the name links out, not the photo too: two adjacent links to
+            the same target read as duplicates to a screen reader. No `escape`
+            needed here — the name is text content, not an attribute value, so a
+            name containing quotes (the nickname in the IA list) is safe.
+          {%- endcomment -%}
+          {%- if person.url and person.url != "" -%}
+            <a href="{{ person.url }}">{{ person.name }}</a>
+          {%- else -%}
+            {{ person.name }}
+          {%- endif -%}
+        </p>
+
+        {%- if person.title and person.title != "" -%}
+          <p class="staff-card__title">{{ person.title }}</p>
+        {%- endif -%}
+
+        {%- if person.email and person.email != "" -%}
+          <p class="staff-card__email">
+            <a href="mailto:{{ person.email }}">{{ person.email }}</a>
+          </p>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
+</section>
+{%- endif -%}

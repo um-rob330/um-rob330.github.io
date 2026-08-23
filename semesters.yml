@@ -1,0 +1,18 @@
+# ---------------------------------------------------------------------------
+# Every offering of ROB 330, newest first.
+#
+# `code` must match a directory in the repo root holding that semester's Jekyll
+# site, and that directory's _config.yml must set `baseurl: "/<code>"`.
+# bin/build enforces both and refuses to build on a mismatch.
+#
+# `current` decides which offering gets the "current" badge on the landing page
+# at rob330.github.io and is the default source for `bin/new-semester`.
+#
+# Use `bin/new-semester <code> "<label>"` rather than editing this by hand.
+# ---------------------------------------------------------------------------
+
+current: f26
+
+semesters:
+  - code: f26
+    label: "Fall 2026"

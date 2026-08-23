@@ -1,0 +1,45 @@
+# ---------------------------------------------------------------------------
+# The schedule table on /schedule/ is generated from this file.
+# Edit here — you never have to touch the table markup.
+#
+# Fields per row:
+#   week      (required) week number, or a label like "Finals"
+#   dates     (required) human-readable date range, e.g. "Sep 1 – Sep 5"
+#   topic     (required) what's covered
+#   readings  (optional) free text
+#   lecture   (optional) slug of a page in _lectures/ (without .md)
+#   due       (optional) what's due this week
+#   break     (optional) true -> row is styled as a no-class week
+# ---------------------------------------------------------------------------
+
+# TODO: replace this sample with your real course TOC.
+- week: 1
+  dates: "Sep 1 – Sep 5"
+  topic: "Course overview and motivation"
+  readings: "Syllabus; Ch. 1"
+  lecture: lecture-01
+  due: ""
+
+- week: 2
+  dates: "Sep 8 – Sep 12"
+  topic: "TODO Topic 2"
+  readings: "Ch. 2"
+  lecture: ""
+  due: "Checkpoint 1 out"
+
+- week: 3
+  dates: "Sep 15 – Sep 19"
+  topic: "TODO Topic 3"
+  readings: "Ch. 3"
+  lecture: ""
+  due: "Checkpoint 1 due Fri 11:59pm"
+
+- week: "Break"
+  dates: "Nov 24 – Nov 28"
+  topic: "No class — Thanksgiving break"
+  break: true
+
+- week: "Finals"
+  dates: "Dec 8 – Dec 12"
+  topic: "Final project presentations"
+  due: "Final project due Dec 12"

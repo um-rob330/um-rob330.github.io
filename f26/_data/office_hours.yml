@@ -1,0 +1,34 @@
+# ---------------------------------------------------------------------------
+# Recurring office hours, shown as a table on /office-hours/ above the live
+# calendar. The Google Calendar embed is the source of truth for one-off changes
+# and cancellations; this table is the at-a-glance weekly version.
+#
+# `staff` is an `id` from _data/staff.yml. The person's NAME and ROLE are looked
+# up from there, so they cannot drift out of sync with the home-page cards.
+# Only the schedule itself lives in this file.
+#
+# bin/build fails the build if an id here doesn't exist in staff.yml.
+#
+# One person may appear more than once (e.g. two blocks on different days) —
+# just add another row with the same id.
+# ---------------------------------------------------------------------------
+
+- staff: instructor
+  when: "TODO — e.g. Tue 13:00 – 14:30"
+  where: "TODO — room or Zoom"
+  notes: "Drop-in, no appointment needed"
+
+- staff: rattan
+  when: "TODO — e.g. Thu 15:00 – 17:00"
+  where: "TODO — room or Zoom"
+  notes: "Checkpoint and hardware help"
+
+- staff: edukulla
+  when: "TODO"
+  where: "TODO"
+  notes: "Lab hours"
+
+- staff: norwood
+  when: "TODO"
+  where: "TODO"
+  notes: "Lab hours"

@@ -1,0 +1,131 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Creates a new semester by copying the current one, then rewriting the handful
+# of values that identify it.
+#
+#   bin/new-semester w27 "Winter 2027"
+#   bin/new-semester f27 "Fall 2027" --from w27
+#
+# What it changes:
+#   - copies <source>/ to <code>/  (skipping build artifacts)
+#   - rewrites <code>/_config.yml: the `semester:` block and `baseurl`
+#   - adds <code> to semesters.yml and makes it `current`
+#
+# What it deliberately does NOT change: course content. Last term's schedule
+# dates, staff, and checkpoint deadlines are copied as-is, because a wrong-but-
+# plausible date is worse than an obvious leftover. The script prints a
+# checklist of exactly what to review.
+
+require "yaml"
+require "fileutils"
+
+ROOT = File.expand_path("..", __dir__)
+Dir.chdir(ROOT)
+
+MANIFEST = "semesters.yml"
+
+def die(msg)
+  warn "\e[31merror:\e[0m #{msg}"
+  exit 1
+end
+
+# --- Arguments --------------------------------------------------------------
+args = ARGV.dup
+from = nil
+if (i = args.index("--from"))
+  from = args[i + 1]
+  die "--from needs a semester code" if from.nil? || from.start_with?("-")
+  args.delete_at(i + 1)
+  args.delete_at(i)
+end
+
+code, label = args
+if code.nil? || label.nil?
+  warn "usage: bin/new-semester <code> \"<label>\" [--from <code>]"
+  warn "   e.g. bin/new-semester w27 \"Winter 2027\""
+  exit 2
+end
+
+unless code =~ /\A[a-z]{1,2}\d{2}\z/
+  die "code #{code.inspect} should look like f26, w27, or sp27 " \
+      "(1-2 lowercase letters + 2 digits) — it becomes the URL segment."
+end
+die "directory #{code}/ already exists" if Dir.exist?(code)
+
+# Derive term and year from the label, e.g. "Winter 2027" -> Winter, 2027.
+term, year = label.match(/\A(\p{L}+)\s+(\d{4})\z/)&.captures
+die "label #{label.inspect} should look like \"Winter 2027\"" if term.nil?
+
+# --- Source semester --------------------------------------------------------
+die "#{MANIFEST} not found" unless File.exist?(MANIFEST)
+manifest = YAML.load_file(MANIFEST)
+existing = manifest["semesters"] || []
+source = from || manifest["current"]
+die "no source semester: pass --from <code>" if source.to_s.empty?
+die "source directory #{source}/ does not exist" unless Dir.exist?(source)
+die "#{code} is already in #{MANIFEST}" if existing.any? { |s| s["code"] == code }
+
+puts "Creating #{code} (#{label}) from #{source}/"
+
+# --- Copy -------------------------------------------------------------------
+FileUtils.mkdir_p(code)
+skip = ["_site", ".jekyll-cache", ".sass-cache", ".DS_Store"]
+Dir.children(source).each do |entry|
+  next if skip.include?(entry)
+
+  FileUtils.cp_r(File.join(source, entry), File.join(code, entry))
+end
+puts "  copied #{Dir.children(code).size} top-level entries"
+
+# --- Rewrite the identifying values ----------------------------------------
+config_path = File.join(code, "_config.yml")
+config = File.read(config_path)
+original = config.dup
+
+# The block is regenerated rather than patched value-by-value: patching leaves
+# the trailing comments describing the *previous* semester, which is exactly the
+# kind of quiet staleness this script exists to prevent.
+new_block = <<~BLOCK
+  semester:
+    code: "#{code}"#{' ' * [1, 12 - code.length].max}# directory name and URL segment -> rob330.github.io/#{code}/
+    label: "#{label}" # displayed everywhere the term is named
+    term: "#{term}"
+    year: #{year}
+BLOCK
+
+config = config.sub(/^semester:\n(?:[ \t]+\S.*\n)+/, new_block)
+
+config = config.sub(/^baseurl:.*/, "baseurl: \"/#{code}\"")
+
+die "could not rewrite #{config_path} — is its `semester:` block intact?" if config == original
+File.write(config_path, config)
+puts "  rewrote #{config_path} (semester block + baseurl)"
+
+# --- Manifest ---------------------------------------------------------------
+# Edited as text, not regenerated from the parsed tree, so the explanatory
+# comments at the top of semesters.yml survive.
+mtext = File.read(MANIFEST)
+mtext = mtext.sub(/^current:.*/, "current: #{code}")
+mtext = mtext.sub(/^semesters:\n/, "semesters:\n  - code: #{code}\n    label: \"#{label}\"\n")
+File.write(MANIFEST, mtext)
+puts "  added #{code} to #{MANIFEST} and set it current"
+
+# --- What a human still has to do ------------------------------------------
+puts <<~NEXT
+
+  #{code}/ is ready. Content was copied verbatim from #{source}/, so review:
+
+    #{code}/_data/schedule.yml     week dates and topics (still #{source}'s)
+    #{code}/_data/staff.yml        instructor, GSI, IAs — and their photos
+    #{code}/_data/office_hours.yml recurring hours
+    #{code}/_config.yml            calendar_id, meeting_times, location
+    #{code}/_checkpoints/*.md      due: dates
+    #{code}/_lectures/*.md         date: fields
+    #{code}/assets/images/         banner .gif and staff headshots
+
+  Then:  bin/build #{code}     (or bin/build for every semester)
+
+  Old semesters keep working — #{source}/ is untouched and still deploys to
+  /#{source}/. Nothing about #{source} changes when you push #{code}.
+NEXT

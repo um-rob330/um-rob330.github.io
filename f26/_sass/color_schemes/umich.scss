@@ -1,0 +1,117 @@
+// ---------------------------------------------------------------------------
+// University of Michigan color scheme for Just the Docs.
+// Selected via `color_scheme: umich` in _config.yml.
+//
+// Official palette: U-M Blue #00274C, Maize #FFCB05.
+//
+// ACCESSIBILITY NOTE — maize on white is ~1.6:1 contrast, which fails WCAG AA
+// for text of any size. So maize appears here ONLY as a non-text accent: rules,
+// underlines, active-state bars, and backgrounds behind navy text. Every piece
+// of readable text is carried by navy (#00274C on white is ~13:1) or the
+// theme's default greys. Do not move maize into a `color:` property on a light
+// background.
+// ---------------------------------------------------------------------------
+
+$um-blue: #00274c;
+$um-maize: #ffcb05;
+
+// Tints/shades derived from the two brand colors
+$um-blue-700: #001a33; // hover/pressed navy
+$um-blue-100: #e8eef4; // pale navy wash for sidebar/table stripes
+$um-blue-200: #c8d6e3; // borders
+$um-maize-300: #ffe27a; // soft maize for large fills
+
+// --- Core theme variables --------------------------------------------------
+$body-background-color: #ffffff;
+$body-text-color: #1c1c1c;
+$body-heading-color: $um-blue;
+
+$link-color: $um-blue;
+$nav-child-link-color: #45566b;
+
+$sidebar-color: $um-blue-100;
+$border-color: $um-blue-200;
+
+$base-button-color: #ffffff;
+$btn-primary-color: $um-blue;
+
+$code-background-color: #f6f8fa;
+$search-result-preview-color: #57646f;
+$table-background-color: #ffffff;
+$feedback-color: darken($sidebar-color, 3%);
+
+// --- Brand accents ---------------------------------------------------------
+
+// Site title in the sidebar reads as the course identity.
+.site-title,
+.site-title:hover {
+  color: $um-blue !important;
+  font-weight: 600;
+}
+
+// Links: navy text with a maize underline that thickens on hover. The color
+// cue is maize; the contrast is always navy.
+.main-content {
+  a:not(.btn) {
+    text-decoration-color: $um-maize;
+    text-decoration-thickness: 0.09em;
+    text-underline-offset: 0.14em;
+
+    &:hover {
+      color: $um-blue-700;
+      text-decoration-thickness: 0.2em;
+    }
+  }
+
+  // Section headings get a maize tick to break up long syllabus pages.
+  h2 {
+    padding-bottom: 0.2em;
+    border-bottom: 2px solid $um-maize;
+  }
+
+  // Table headers: navy text over a pale wash, maize rule beneath.
+  th {
+    color: $um-blue;
+    background-color: $um-blue-100;
+    border-bottom: 2px solid $um-maize;
+  }
+}
+
+// Primary buttons: navy fill, maize ring on hover/focus.
+.btn-primary {
+  color: #ffffff !important;
+  background-color: $um-blue !important;
+  background-image: none !important;
+
+  &:hover,
+  &:focus-visible {
+    background-color: $um-blue-700 !important;
+    box-shadow: 0 0 0 3px $um-maize !important;
+  }
+}
+
+// Secondary buttons
+.btn:not(.btn-primary) {
+  color: $um-blue !important;
+
+  &:hover,
+  &:focus-visible {
+    box-shadow: 0 0 0 2px $um-maize !important;
+  }
+}
+
+// Active nav item: maize bar on the leading edge.
+.nav-list .nav-list-item .nav-list-link.active {
+  color: $um-blue;
+  font-weight: 600;
+  background-image: linear-gradient(to right, $um-maize 0 4px, transparent 4px);
+}
+
+// Keyboard focus ring, sitewide — maize is highly visible and this is a
+// non-text use, so it's both on-brand and compliant.
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 3px solid $um-maize;
+  outline-offset: 2px;
+}
