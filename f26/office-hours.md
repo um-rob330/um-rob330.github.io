@@ -14,11 +14,9 @@ what you expected to happen. You do not need an appointment unless noted.
 ## Recurring hours
 
 {% comment %}
-  NOTE: this block deliberately uses plain comment tags rather than the
-  whitespace-trimming (hyphenated) form. Trimming eats the blank lines around
-  the block, which glues the table header onto the preceding heading and breaks
-  the table. Also: never write literal Liquid tag syntax inside a comment —
-  Liquid still tokenizes it and the build dies with a terminator error.
+  This is a raw HTML table rather than a Markdown pipe-table: a per-person row
+  merges its When/Where/Notes into one colspan="3" cell pointing at the live
+  calendar below, and Markdown tables have no colspan.
 
   Name and role are looked up from _data/staff.yml by the `staff` id, so this
   table cannot disagree with the staff cards on the home page. Only `when`,
@@ -32,16 +30,19 @@ what you expected to happen. You do not need an appointment unless noted.
   fails before it ever reaches a reader.
 
   A row for a service rather than a person (e.g. a room's drop-in hours) sets
-  `who:` instead of `staff:`. That skips the staff.yml lookup entirely — the
-  Who column shows the literal text and Role is left blank, since it isn't a
-  staff role.
+  `who:` instead of `staff:`. That skips the staff.yml lookup entirely, keeps
+  its own When/Where/Notes cells (no colspan — there's no live-calendar entry
+  to point at), and leaves Role blank since it isn't a staff role.
 {% endcomment %}
 
-| Who | Role | When | Where | Notes |
-|:----|:-----|:-----|:------|:------|
+<table>
+  <thead>
+    <tr><th>Who</th><th>Role</th><th>When</th><th>Where</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
 {%- for oh in site.data.office_hours -%}
   {%- if oh.who %}
-| {{ oh.who }} | — | {{ oh.when }} | {{ oh.where }} | {{ oh.notes | default: "—" }} |
+    <tr><td>{{ oh.who }}</td><td>—</td><td>{{ oh.when }}</td><td>{{ oh.where }}</td><td>{{ oh.notes | default: "—" }}</td></tr>
   {%- else -%}
     {%- assign person = nil -%}
     {%- assign group_key = "" -%}
@@ -60,9 +61,11 @@ what you expected to happen. You do not need an appointment unless noted.
       {%- when "support" -%}{%- assign role = "Support" -%}
       {%- else -%}{%- assign role = "—" -%}
     {%- endcase %}
-| {% if person %}{{ person.name }}{% else %}**⚠ unknown staff id `{{ oh.staff }}`**{% endif %} | {{ role }} | {{ oh.when }} | {{ oh.where }} | {{ oh.notes | default: "—" }} |
+    <tr><td>{% if person %}{{ person.name }}{% else %}<strong>⚠ unknown staff id <code>{{ oh.staff }}</code></strong>{% endif %}</td><td>{{ role }}</td><td colspan="3">see below live OH calendar</td></tr>
   {%- endif -%}
 {%- endfor %}
+  </tbody>
+</table>
 
 ## Live calendar
 
