@@ -58,16 +58,11 @@ hardware using the [MBots](https://mbot.robotics.umich.edu/).
 
 ## Prerequisites
 
-**Advisory prerequisite:** none.
+Advisory prerequisite: none.
 
-**Enforced prerequisites:** all three groups below, with a minimum grade of
-**C−** in each.
-
-| Requirement | Satisfied by | What this course does with it |
-|:------------|:-------------|:------------------------------|
-| Programming and data structures | **EECS 280** | You will write, debug, and profile substantial code against real sensor data (objectives 2.2, 4.2, 5.2, 6.3) |
-| Probability and statistics | **IOE 265**, **EECS 301**, or **BIOMEDE 241** | Measurement and motion models, noise and outlier terms, filtering, and error characterization (1.1, 2.4, 3.2, 6.1) |
-| Linear algebra | **ROB 101**, **MATH 214**, **217**, **417**, or **419** | Rigid-body transforms in SE(2)/SE(3), least squares, essential-matrix decomposition (1.2, 3.3, 4.1, 4.3) |
+Enforced Prerequisite: EECS 280 and (IOE 265 or EECS 301 or BIOMEDE 241) and
+(ROB 101 or MATH 214 or MATH 217 or MATH 417 or MATH 419). Minimum grade
+requirement of “C-” for enforced prerequisite.
 
 ### What that means in practice
 {: .text-delta }
@@ -92,12 +87,6 @@ You are **not** expected to arrive knowing ROS 2, and no prior robotics course i
 required. We build up the frame conventions, tooling, and message plumbing in the
 first weeks — see [Resources]({{ '/resources/' | relative_url }}) for the setup
 you'll do before the first lab.
-
-{: .tip }
-> If you satisfy the prerequisites on paper but any of the practical list above
-> feels shaky, come to [office hours]({{ '/office-hours/' | relative_url }}) in
-> week 1 rather than week 6. The material compounds — module 6 assumes you have
-> module 2 working — so early gaps get expensive.
 
 ## Textbook and materials
 
