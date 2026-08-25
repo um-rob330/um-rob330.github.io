@@ -76,12 +76,13 @@ Coming in, you should be comfortable:
 - Reasoning with a probability distribution, a conditional probability, and a
   Gaussian — its mean, its covariance, and what a covariance's off-diagonal
   terms mean.
-- Work in teams.
 - Use Git for version control.
 
 The current MBot platform uses [ROS2 Jazzy](https://docs.ros.org/en/jazzy/index.html).
 You may find the ROS2 Documentation helpful. We will also cover helpful
 commands in class.
+
+Be prepared to work in a team. Most checkpoints are done in teams.
 
 ## Textbook and materials
 
