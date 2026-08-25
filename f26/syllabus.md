@@ -115,7 +115,7 @@ C− ≥ 70, D ≥ 60, F < 60.
 
 Checkpoints lose **10% of the earned score per day late**, counted in whole days
 from the deadline, for up to **four days**. After four days the checkpoint is not
-accepted and receives no credit. A submission at 12:01 am is one day late.
+accepted and receives no credit. A submission at or after 12:10 am is one day late.
 
 <!-- VERIFY: decide whether weekend days count toward the penalty, and delete
      whichever sentence below does not apply. -->
