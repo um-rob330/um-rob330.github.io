@@ -129,7 +129,7 @@ aux_links:
   "Piazza": "https://piazza.com/umich/fall2026/rob330fa2026/home"
   "Google Drive": "https://drive.google.com/drive/folders/1ZYIDd03sRtkSddDVlESq2QoCIzSGEajw?usp=drive_link"
   "GitLab": "https://gitlab.eecs.umich.edu/rob330-fa26"
-  "Office Hours Help Queue": "https://oh.eecs.umich.edu/courses/rob330"
+  "OH Queue": "https://oh.eecs.umich.edu/courses/rob330"
 # Canvas moved to aux_links (header) above. Leaving it here too would put the
 # same link in the header and the sidebar on every page. Add sidebar links here
 # only for destinations that aren't already in aux_links.
