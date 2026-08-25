@@ -8,11 +8,20 @@ permalink: /
 
 <div class="hero">
   {%- if site.course.banner and site.course.banner != "" -%}
+  {%- assign banner_ext = site.course.banner | split: "." | last | downcase -%}
   <div class="hero__media">
+    {%- if banner_ext == "mp4" or banner_ext == "webm" -%}
+    <video
+      class="hero__img hero__img--motion"
+      src="{{ site.course.banner | relative_url }}"
+      poster="{{ site.course.banner_static | relative_url }}"
+      autoplay muted loop playsinline aria-hidden="true"></video>
+    {%- else -%}
     <img
       class="hero__img hero__img--motion"
       src="{{ site.course.banner | relative_url }}"
       alt="{{ site.course.banner_alt }}">
+    {%- endif -%}
     {%- if site.course.banner_static and site.course.banner_static != "" -%}
     <img
       class="hero__img hero__img--static"

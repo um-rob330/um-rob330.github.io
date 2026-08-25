@@ -64,10 +64,14 @@ course:
 
   # Home-page banner. Drop the file in assets/images/ and set the path here,
   # e.g. "/assets/images/banner.gif". Empty -> a labeled placeholder strip.
-  banner: ""
+  # A muted/looping .mp4 or .webm also works (index.md renders it as <video>
+  # instead of <img>) — much smaller than a .gif at the same quality, which is
+  # why the home banner below is an .mp4 rather than a real GIF.
+  banner: "/assets/images/banner.mp4"
   # Optional still frame shown instead of the animation for visitors whose OS
-  # is set to "reduce motion". Leave "" if the banner isn't animated.
-  banner_static: ""
+  # is set to "reduce motion" (and used as the <video> poster so there's no
+  # blank frame before playback starts). Leave "" if the banner isn't animated.
+  banner_static: "/assets/images/banner-static.jpg"
   # Alt text. Leave "" if the banner is purely decorative — that is the correct
   # choice for a decorative image, and screen readers will skip it.
   banner_alt: ""
