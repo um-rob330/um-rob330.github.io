@@ -71,9 +71,6 @@ Coming in, you should be comfortable:
 
 - Writing and debugging a program of a few hundred lines, and reading someone
   else's — you will be handed a partial stack and asked to complete it.
-- Multiplying and inverting matrices, and knowing what an eigenvector and a
-  least-squares solution are. You do not need to have seen SVD; we introduce it
-  where it's needed.
 - Reasoning with a probability distribution, a conditional probability, and a
   Gaussian — its mean, its covariance, and what a covariance's off-diagonal
   terms mean.
