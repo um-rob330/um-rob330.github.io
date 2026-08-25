@@ -86,9 +86,9 @@ commands in class.
 ## Textbook and materials
 
 There is no required textbook for this course; however, readings may be
-suggested from the textbook Thrun, S., Burgard, W., & Fox, D. (2005).
-Probabilistic robotics. The MIT Press. The instructors may provide additional
-references.
+suggested from the textbook [Thrun, S., Burgard, W., & Fox, D. (2005).
+Probabilistic robotics. The MIT Press.](https://robots.stanford.edu/probabilistic-robotics/)
+The instructors may provide additional references.
 
 ## Grading
 
