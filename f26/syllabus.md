@@ -161,7 +161,8 @@ of the better ways to learn. The line this course draws:
 **Generative AI tools** (ChatGPT, Claude, Copilot, and similar) may be used to
 explain concepts, review your own code, and help interpret error messages. They
 may **not** be used to generate code or written analysis that you submit as your
-own. If you use them at all, say so in your submissions.
+own. If you use them at all, say so in your submissions — one line naming the
+tool and what you used it for.
 
 {: .policy }
 > Work you submit must be your own, and so must your data. Cite every source and
