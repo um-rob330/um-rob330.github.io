@@ -91,6 +91,8 @@ suggested from the textbook [Thrun, S., Burgard, W., & Fox, D. (2005).
 Probabilistic robotics. The MIT Press.](https://robots.stanford.edu/probabilistic-robotics/)
 The instructors may provide additional references.
 
+See the [Resources]({{ '/resources/' | relative_url }}) page for more.
+
 ## Grading
 
 | Component | Weight |
