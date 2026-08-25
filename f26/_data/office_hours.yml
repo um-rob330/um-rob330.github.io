@@ -11,6 +11,10 @@
 #
 # One person may appear more than once (e.g. two blocks on different days) —
 # just add another row with the same id.
+#
+# For hours that belong to a room/service rather than a specific person (e.g.
+# a drop-in help desk covering several staff), use `who:` instead of `staff:`
+# — it's shown as literal text and skips the staff.yml lookup and Role column.
 # ---------------------------------------------------------------------------
 
 - staff: instructor
@@ -32,3 +36,18 @@
   when: "TODO"
   where: "TODO"
   notes: "Lab hours"
+
+- who: "IS Office Hours"
+  when: "Tue 11:00 – 15:00"
+  where: "Room 4170"
+  notes: "Open office hours for anything related to instructional support, including MBot Tech Support, Robot Garage Access and more"
+
+- who: "IS Office Hours"
+  when: "Wed 13:00 – 17:00"
+  where: "Room 4170"
+  notes: "Open office hours for anything related to instructional support, including MBot Tech Support, Robot Garage Access and more"
+
+- who: "IS Office Hours"
+  when: "Thu 11:00 – 16:00"
+  where: "Room 4170"
+  notes: "Open office hours for anything related to instructional support, including MBot Tech Support, Robot Garage Access and more"

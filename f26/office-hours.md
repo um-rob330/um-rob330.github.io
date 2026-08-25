@@ -30,29 +30,38 @@ what you expected to happen. You do not need an appointment unless noted.
 
   An unknown id renders a loud marker rather than a blank cell — and bin/build
   fails before it ever reaches a reader.
+
+  A row for a service rather than a person (e.g. a room's drop-in hours) sets
+  `who:` instead of `staff:`. That skips the staff.yml lookup entirely — the
+  Who column shows the literal text and Role is left blank, since it isn't a
+  staff role.
 {% endcomment %}
 
 | Who | Role | When | Where | Notes |
 |:----|:-----|:-----|:------|:------|
 {%- for oh in site.data.office_hours -%}
-  {%- assign person = nil -%}
-  {%- assign group_key = "" -%}
-  {%- for group in site.data.staff -%}
-    {%- for p in group[1] -%}
-      {%- if p.id == oh.staff -%}
-        {%- assign person = p -%}
-        {%- assign group_key = group[0] -%}
-      {%- endif -%}
+  {%- if oh.who %}
+| {{ oh.who }} | — | {{ oh.when }} | {{ oh.where }} | {{ oh.notes | default: "—" }} |
+  {%- else -%}
+    {%- assign person = nil -%}
+    {%- assign group_key = "" -%}
+    {%- for group in site.data.staff -%}
+      {%- for p in group[1] -%}
+        {%- if p.id == oh.staff -%}
+          {%- assign person = p -%}
+          {%- assign group_key = group[0] -%}
+        {%- endif -%}
+      {%- endfor -%}
     {%- endfor -%}
-  {%- endfor -%}
-  {%- case group_key -%}
-    {%- when "instructor" -%}{%- assign role = "Instructor" -%}
-    {%- when "gsi" -%}{%- assign role = "Graduate Student Instructor" -%}
-    {%- when "ia" -%}{%- assign role = "Instructional Assistant" -%}
-    {%- when "support" -%}{%- assign role = "Support" -%}
-    {%- else -%}{%- assign role = "—" -%}
-  {%- endcase %}
+    {%- case group_key -%}
+      {%- when "instructor" -%}{%- assign role = "Instructor" -%}
+      {%- when "gsi" -%}{%- assign role = "Graduate Student Instructor" -%}
+      {%- when "ia" -%}{%- assign role = "Instructional Assistant" -%}
+      {%- when "support" -%}{%- assign role = "Support" -%}
+      {%- else -%}{%- assign role = "—" -%}
+    {%- endcase %}
 | {% if person %}{{ person.name }}{% else %}**⚠ unknown staff id `{{ oh.staff }}`**{% endif %} | {{ role }} | {{ oh.when }} | {{ oh.where }} | {{ oh.notes | default: "—" }} |
+  {%- endif -%}
 {%- endfor %}
 
 ## Live calendar

@@ -76,7 +76,8 @@ to_build.each do |sem|
 
   # office_hours.yml refers to people by an id defined in staff.yml. A typo there
   # would render a row with no name, so it's checked here rather than discovered
-  # by a student reading the page.
+  # by a student reading the page. A row for a service rather than a person (e.g.
+  # a room's drop-in hours) uses `who:` instead of `staff:` and skips this check.
   staff_path = File.join(code, "_data", "staff.yml")
   hours_path = File.join(code, "_data", "office_hours.yml")
   if File.exist?(staff_path) && File.exist?(hours_path)
@@ -99,9 +100,9 @@ to_build.each do |sem|
           "         Known ids: #{ids.join(', ')}"
     end
 
-    no_ref = hours.each_with_index.reject { |h, _| h["staff"] }.map { |_, i| i }
+    no_ref = hours.each_with_index.reject { |h, _| h["staff"] || h["who"] }.map { |_, i| i }
     unless no_ref.empty?
-      die "#{hours_path}: row(s) #{no_ref.map { |i| i + 1 }.join(', ')} have no `staff:` id"
+      die "#{hours_path}: row(s) #{no_ref.map { |i| i + 1 }.join(', ')} have no `staff:` id or `who:` name"
     end
 
     info "ok  #{code}  (baseurl #{baseurl}, #{ids.size} staff, #{hours.size} office-hour rows)"
