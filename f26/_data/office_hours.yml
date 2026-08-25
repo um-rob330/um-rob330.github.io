@@ -38,16 +38,6 @@
   notes: "Lab hours"
 
 - who: "IS Office Hours"
-  when: "Tue 11:00 – 15:00"
-  where: "Room 4170"
-  notes: "Open office hours for anything related to instructional support, including MBot Tech Support, Robot Garage Access and more"
-
-- who: "IS Office Hours"
-  when: "Wed 13:00 – 17:00"
-  where: "Room 4170"
-  notes: "Open office hours for anything related to instructional support, including MBot Tech Support, Robot Garage Access and more"
-
-- who: "IS Office Hours"
-  when: "Thu 11:00 – 16:00"
+  when: "Tue 11:00 – 15:00<br>Wed 13:00 – 17:00<br>Thu 11:00 – 16:00"
   where: "Room 4170"
   notes: "Open office hours for anything related to instructional support, including MBot Tech Support, Robot Garage Access and more"
