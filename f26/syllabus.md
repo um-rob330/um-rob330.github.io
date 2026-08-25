@@ -90,20 +90,10 @@ you'll do before the first lab.
 
 ## Textbook and materials
 
-**There is no required textbook for this course**; however, readings may be
-suggested from the textbook
-[Thrun, S., Burgard, W., & Fox, D. (2005). *Probabilistic robotics*. The MIT
-Press.](https://robots.stanford.edu/probabilistic-robotics/) The instructors may
-provide additional references.
-
-Suggested readings are listed week by week on the
-[schedule]({{ '/schedule/' | relative_url }}), and further references are
-collected on the [Resources]({{ '/resources/' | relative_url }}) page.
-
-{: .note }
-> Nothing you need to buy. Where a reading is assigned, it will be linked or
-> distributed — check the [schedule]({{ '/schedule/' | relative_url }}) rather
-> than assuming you need the book.
+There is no required textbook for this course; however, readings may be
+suggested from the textbook Thrun, S., Burgard, W., & Fox, D. (2005).
+Probabilistic robotics. The MIT Press. The instructors may provide additional
+references.
 
 ## Grading
 
@@ -159,15 +149,11 @@ of the better ways to learn. The line this course draws:
   or code from a public repository, unless the checkpoint says otherwise.
 - Sharing your solution code with a classmate who has not submitted yet.
 - Submitting data you did not collect. **Every trajectory, scan, and image you
-  report must come from your own robot on your own run.** This is the integrity
-  rule most specific to this course, and the easiest one to violate without
-  meaning to — borrowing a lab partner's rosbag because your run failed is
-  fabrication, not collaboration.
+  report must come from your own robot on your own run.**
 
 **Always**
 
-- Name every collaborator and cite every outside source in your submission's
-  `README`. Attribution costs you nothing; its absence is the problem.
+- Name every collaborator and cite every outside source in your submissions.
 
 <!-- VERIFY: this is the middle-ground AI policy. Tighten or loosen it to match
      what you actually intend to enforce, and check it against any department- or
