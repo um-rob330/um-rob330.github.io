@@ -71,9 +71,13 @@ Coming in, you should be comfortable:
 
 - Writing and debugging a program of a few hundred lines, and reading someone
   else's — you will be handed a partial stack and asked to complete it.
+- Multiplying and inverting matrices, and knowing what an eigenvector and a
+  least-squares solution are.
 - Reasoning with a probability distribution, a conditional probability, and a
   Gaussian — its mean, its covariance, and what a covariance's off-diagonal
   terms mean.
+- Work in teams.
+- Use Git for version control.
 
 The current MBot platform uses [ROS2 Jazzy](https://docs.ros.org/en/jazzy/index.html).
 You may find the ROS2 Documentation helpful. We will also cover helpful
