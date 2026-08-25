@@ -75,15 +75,9 @@ Coming in, you should be comfortable:
   Gaussian — its mean, its covariance, and what a covariance's off-diagonal
   terms mean.
 
-<!-- VERIFY: this paragraph is a promise to students about what they can arrive
-     not knowing. Adjust it to match how much scaffolding your labs actually
-     provide. Note the language gap: EECS 280 is taught in C++, so if the labs
-     are Python-based, most students will be learning Python alongside the
-     robotics content — budget lab time accordingly or say so here. -->
-You are **not** expected to arrive knowing ROS 2, and no prior robotics course is
-required. We build up the frame conventions, tooling, and message plumbing in the
-first weeks — see [Resources]({{ '/resources/' | relative_url }}) for the setup
-you'll do before the first lab.
+The current MBot platform uses [ROS2 Jazzy](https://docs.ros.org/en/jazzy/index.html).
+You may find the ROS2 Documentation helpful. We will also cover helpful
+commands in class.
 
 ## Textbook and materials
 
