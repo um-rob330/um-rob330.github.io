@@ -50,14 +50,11 @@ permalink: /syllabus/
 This course develops a full-stack autonomous navigation and mapping system for
 a mobile robot, from wheel encoders to a complete map-and-navigate demonstration.
 We work bottom-up: pose estimation by dead reckoning from odometry, probabilistic
-measurement models for LIDAR and cameras, motion estimation from images (visual
-odometry), path planning over occupancy grids, and finally simultaneous
-localization and mapping (SLAM), which closes the loop between the two.
+measurement models for LiDAR, path planning over occupancy grids, and
+simultaneous localization and mapping (SLAM), which closes the loop between the two.
 
-Every topic is implemented on physical hardware. Simulation is a debugging tool
-here, not the deliverable — you will spend the term discovering the difference
-between an algorithm that works on logged data and one that works on a robot
-whose wheels slip, whose camera blurs, and whose compute budget is finite.
+We will implement mapping, localization, and navigation algorithms in physical
+hardware using the [MBots](https://mbot.robotics.umich.edu/).
 
 ## Learning objectives
 
