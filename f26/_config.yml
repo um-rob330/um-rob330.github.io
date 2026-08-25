@@ -208,3 +208,5 @@ exclude:
   - README.md
   - vendor
   - .github
+  # Content pulled off the live site but kept around for later — never built.
+  - drafts
