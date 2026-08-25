@@ -175,31 +175,44 @@ College of Engineering Honor Council.
 
 ### Accommodations
 
-The University of Michigan is committed to equal access. If you have a
-disability, chronic condition, or temporary impairment that affects your
-participation in this course, you are entitled to accommodations.
+The University of Michigan recognizes disability as an integral part of
+diversity, equity and inclusion, and is committed to creating as accessible
+educational environment for students with disabilities/disabled students as
+possible.
 
-Work with
+Disability can include: mental health conditions, ADHD, learning disabilities,
+autism, chronic illness, physical conditions, sensory conditions, and more.
+
+If you anticipate or are experiencing barriers based on disability or
+temporary injuries,
 <!-- VERIFY: confirm the office name and URL — these change. As of writing:
      Services for Students with Disabilities, ssd.umich.edu -->
-[Services for Students with Disabilities (SSD)](https://ssd.umich.edu) to
-establish a Verified Individualized Services and Accommodations (VISA) letter,
-then send it to the instructor. **Contact us as early in the term as you can.**
-Accommodations are not applied retroactively, and some — extended time on a
-hardware lab, or alternative arrangements for lab access — take planning to set
-up well.
+[Services for Students with Disabilities (SSD)](https://ssd.umich.edu) is the
+office that students work with to explore reasonable accommodations, tools,
+and resources.
 
-You do not need to disclose your diagnosis to anyone in this course, including
-the instructor. The VISA letter is sufficient.
+If you are already connected with SSD and have approved accommodations,
+please share your letter through Accommodate as soon as possible so that we
+can discuss how your accommodations will be implemented in this course. The
+sooner I know about your disability access-needs, the more equipped I can be
+to facilitate accommodations. You should reach out to me and/or your
+Disability Access Coordinator if you have any questions or concerns about
+your accommodations.
 
-{: .note }
-> This applies to more than exams. If any part of the course — lab bench height,
-> equipment handling, timed hardware demos, visual inspection of a robot's
-> behavior — creates a barrier, tell us. Some of it we can simply change.
+If you have not connected with SSD and anticipate or are experiencing a
+disability-related barrier, and would like to discuss accommodations and/or
+resources, please contact SSD by completing their initial information form.
+
+If you have a temporary medical injury/condition, such as a broken arm, I may
+be able to assist in minimizing classroom barriers. In situations where
+additional assistance is needed, you should contact the SSD as noted above.
+
+For more information, call 734-763-3000 or email
+[ssdoffice@umich.edu](mailto:ssdoffice@umich.edu).
 
 ## Getting help
 
 1. Come to class!
-2. Bring it to [office hours]({{ '/office-hours/' | relative_url }}) — the fastest path.
+2. Bring it to [office hours]({{ '/office-hours/' | relative_url }}).
 3. Post to [Piazza]({{ site.course.piazza_url }}) so classmates benefit from the answer.
 4. Email course staff with {{ site.course.code }} in the subject line.
