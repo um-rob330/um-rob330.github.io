@@ -90,6 +90,6 @@ ros2 launch foxglove_bridge foxglove_bridge_launch.xml
 <iframe width="560" height="315" src="https://www.youtube.com/embed/6qcvDb_q0TQ?si=3X5i8moHI6Qk0ZgI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Checkpoint Submission
-No submission is required for this checkpoint.
+See Canvas for submission requirements.
 
 However, **ensure your camera can successfully detect AprilTags, you’ll need this for the competition.**

@@ -30,7 +30,7 @@ Following the instruction in the [assembly guide](https://mbot.robotics.umich.ed
 ### Task 0.2 Software Setup
 Following the instructions in the [mbot system setup guide]({{ '/resources/mbot-system-setup-pi5/' | relative_url }}) and setup the software on your robot.
 
-Finishing Checkpoint 0 is critical. Please reach out during the first week of BotLab if you need any assistance to get your MBot fully functional. BotLab is more intensive than ArmLab, so having your MBot ready early will make a big difference.
+Finishing Checkpoint 0 is critical. Please reach out during the first week of BotLab if you need any assistance to get your MBot fully functional.
 
 ## Checkpoint Submission
-No submission is required for this checkpoint.
+See Canvas for submission requirements.
