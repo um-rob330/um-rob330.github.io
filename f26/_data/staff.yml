@@ -35,7 +35,7 @@ gsi:
     name: "Avantika Rattan"
     email: "arattan@umich.edu"
     title: "Graduate Student Instructor"
-    photo: ""
+    photo: "arattan.png"
 
 ia:
   # Single-quoted because the name contains double quotes. In YAML, '...' takes
