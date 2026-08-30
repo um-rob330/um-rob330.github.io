@@ -166,38 +166,19 @@ callouts:
     color: purple
 
 # ---------------------------------------------------------------------------
-# Collections — lecture notes and checkpoints each get their own folder
+# Collections
 # ---------------------------------------------------------------------------
-# REQUIRED for a course site. Jekyll defaults to future: false, which silently
-# refuses to WRITE any collection document whose `date:` is in the future — the
-# page still appears in the nav and the schedule links to it, but the file is
-# never generated and the link 404s. Since lecture pages are dated when the
-# lecture happens, every upcoming lecture would be a dead link without this.
 future: true
+
+# Lecture notes are being prepared in drafts/ and are intentionally not a live
+# collection yet. Re-enable the `lectures` collection and its defaults when
+# lecture pages are ready to publish.
 
 # Checkpoints are NOT a collection: they are regular pages under checkpoints/
 # with `parent: Checkpoints`. That gives a clickable landing page at
 # /f26/checkpoints/ with the individual checkpoints nested beneath it — a
 # collection's nav group is only a heading, so an overview page and a collection
 # group of the same name would appear twice in the sidebar.
-collections:
-  lectures:
-    output: true
-    permalink: /lectures/:path/
-
-just_the_docs:
-  collections:
-    lectures:
-      name: Lecture Notes
-      nav_fold: true
-
-defaults:
-  - scope:
-      path: ""
-      type: lectures
-    values:
-      layout: default
-
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
