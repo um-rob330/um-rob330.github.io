@@ -8,12 +8,10 @@ permalink: /schedule/
 # Schedule
 {: .no_toc }
 
-Week-by-week topics, readings, and due dates. This table is generated from
-`_data/schedule.yml` — edit that file, not this page.
+Week-by-week topics, readings, and due dates.
 
 {: .note }
-> The schedule is subject to change. Changes are announced in class and
-> reflected here; this page is always the current version.
+> The schedule is subject to change (will announce in class).
 
 <div class="schedule-table" markdown="0">
 <table>
@@ -21,8 +19,8 @@ Week-by-week topics, readings, and due dates. This table is generated from
     <tr>
       <th>Week</th>
       <th>Dates</th>
-      <th>Topic</th>
-      <th>Readings</th>
+      <th>Class and recommended progress</th>
+      <th>PrairieLearn</th>
       <th>Due</th>
     </tr>
   </thead>
@@ -52,7 +50,14 @@ Week-by-week topics, readings, and due dates. This table is generated from
 
 | Date | Event |
 |:-----|:------|
-| TODO | Add/drop deadline |
-| TODO | Midterm exam |
-| TODO | Final project proposal due |
-| TODO | Final project due |
+| Sep. 10 | Checkpoint 0 — MBot Intro Assignment due |
+| Sep. 21 | Add/drop deadline |
+| Sep. 27 | Checkpoint 1 — Setpoint Challenge report and videos due |
+| Oct. 25 | Checkpoint 2 — SLAM Challenge report and maze-run video due |
+| Oct. 26 | Midterm written exam |
+| Oct. 28 | Midterm oral exam |
+| Nov. 18 | Checkpoint 3 — Escape Challenge report and video due |
+| Nov. 24 | Checkpoint 4 — Camera Calibration video due |
+| Dec. 9 | Final written and oral exams |
+| Dec. 11 | Course evaluation due |
+| Dec. 13 | Checkpoint 5 due |

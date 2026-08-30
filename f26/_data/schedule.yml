@@ -1,45 +1,79 @@
 # ---------------------------------------------------------------------------
 # The schedule table on /schedule/ is generated from this file.
-# Edit here — you never have to touch the table markup.
-#
-# Fields per row:
-#   week      (required) week number, or a label like "Finals"
-#   dates     (required) human-readable date range, e.g. "Sep 1 – Sep 5"
-#   topic     (required) what's covered
-#   readings  (optional) free text
-#   lecture   (optional) slug of a page in _lectures/ (without .md)
-#   due       (optional) what's due this week
-#   break     (optional) true -> row is styled as a no-class week
 # ---------------------------------------------------------------------------
 
-# TODO: replace this sample with your real course TOC.
 - week: 1
-  dates: "Sep 1 – Sep 5"
-  topic: "Course overview and motivation"
-  readings: "Syllabus; Ch. 1"
-  lecture: lecture-01
-  due: ""
+  dates: "Aug. 31 – Sep. 2"
+  topic: "Course overview and MBot overview; Lab 1-1: Set up MBot (Checkpoint 0); Lab 1-2: Drive MBot (Checkpoint 0)"
+  readings: "HW 1"
 
 - week: 2
-  dates: "Sep 8 – Sep 12"
-  topic: "TODO Topic 2"
-  readings: "Ch. 2"
-  lecture: ""
-  due: "Checkpoint 1 out"
+  dates: "Sep. 7 – Sep. 9"
+  topic: "Labor Day — no class; wheel calibration and PID control; Checkpoint 1: wheel calibration and PID tuning"
+  readings: "HW 2"
+  due: "Checkpoint 0 — MBot Intro Assignment due Sep. 10"
 
 - week: 3
-  dates: "Sep 15 – Sep 19"
-  topic: "TODO Topic 3"
-  readings: "Ch. 3"
-  lecture: ""
-  due: "Checkpoint 1 due Fri 11:59pm"
+  dates: "Sep. 14 – Sep. 16"
+  topic: "Odometry and rotate-translate-rotate control; Checkpoint 1: continue PID tuning, improve firmware, and build a motion controller"
+  readings: "HW 3"
 
-- week: "Break"
-  dates: "Nov 24 – Nov 28"
-  topic: "No class — Thanksgiving break"
-  break: true
+- week: 4
+  dates: "Sep. 21 – Sep. 23"
+  topic: "Send waypoints and tune for Checkpoint 1; Setpoint Challenge practice and challenge"
+  readings: "HW 4"
+  due: "Add/drop deadline Sep. 21; Checkpoint 1 (Setpoint Challenge) report and videos due Sep. 27"
 
-- week: "Finals"
-  dates: "Dec 8 – Dec 12"
-  topic: "Final project presentations"
-  due: "Final project due Dec 12"
+- week: 5
+  dates: "Sep. 28 – Sep. 30"
+  topic: "Occupancy mapping and Bresenham’s algorithm; Checkpoint 2, Task 2.1: Mapping"
+  readings: "HW 5; HW 6"
+
+- week: 6
+  dates: "Oct. 5 – Oct. 7"
+  topic: "Monte Carlo Localization and particle filters; Checkpoint 2, Task 2.2: Localization"
+  readings: "HW 7; HW 8; HW 9"
+
+- week: 7
+  dates: "Oct. 12 – Oct. 14"
+  topic: "SLAM review: action and sensor models; Checkpoint 2, Task 2.3: SLAM"
+
+- week: 8
+  dates: "Oct. 19 – Oct. 21"
+  topic: "Fall Study Break — no class; Midterm competition practice and competition"
+  due: "Checkpoint 2 (SLAM Challenge) report, including maze-run video, due Oct. 25"
+
+- week: 9
+  dates: "Oct. 26 – Oct. 28"
+  topic: "Midterm written exam; written-exam review and oral-exam practice; midterm oral exam"
+  readings: "HW 10"
+
+- week: 10
+  dates: "Nov. 2 – Nov. 4"
+  topic: "Path planning and A*; Checkpoint 3, Task 3.1: Path Planning"
+  readings: "HW 11"
+
+- week: 11
+  dates: "Nov. 9 – Nov. 11"
+  topic: "Frontier exploration; Checkpoint 3, Task 3.2: Map Exploration; Task 3.3: Localization with unknown (optional extra credit)"
+  readings: "HW 12; HW 13"
+
+- week: 12
+  dates: "Nov. 16 – Nov. 18"
+  topic: "Escape Challenge; finish Checkpoint 3 submissions; begin Checkpoint 4: Camera Calibration"
+  due: "Checkpoint 3 (Escape Challenge) report and video due Nov. 18"
+
+- week: 13
+  dates: "Nov. 23 – Nov. 25"
+  topic: "Checkpoint 4: Camera Calibration (continued); Thanksgiving Recess — no class"
+  readings: "HW 14"
+  due: "Checkpoint 4 (Camera Calibration) video due Nov. 24"
+
+- week: 14
+  dates: "Nov. 30 – Dec. 2"
+  topic: "Advanced SLAM methods: visual odometry, ORB-SLAM, loop closure, bundle adjustment, and semantic SLAM; Checkpoint 5: semantic mapping and mini-ORB-SLAM simulation"
+
+- week: 15
+  dates: "Dec. 7 – Dec. 9"
+  topic: "Course wrap-up and Q&A; final written exam; final oral exam"
+  due: "Course evaluation due Dec. 11; Checkpoint 5 due Dec. 13"

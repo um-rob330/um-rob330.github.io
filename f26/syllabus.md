@@ -95,17 +95,33 @@ See the [Resources]({{ '/resources/' | relative_url }}) page for more.
 
 ## Grading
 
-| Component | Weight |
-|:----------|-------:|
-| Checkpoints | 40% |
-| Midterm | 20% |
-| Final project | 30% |
-| Participation | 10% |
-| **Total** | **100%** |
+| Component | Format | Points |
+|:----------|:-------|-------:|
+| Checkpoint 0 — MBot Intro Assignment | Individual | 5 |
+| Checkpoint 1 — Setpoint Challenge | Group | 15 |
+| Checkpoint 2 — SLAM Challenge | Group | 15 |
+| Checkpoint 3 — Escape Challenge | Group | 15 |
+| Checkpoint 4 — Camera Calibration | Group | 5 |
+| Checkpoint 5 — Semantic/Visual SLAM | Group | 15 |
+| Midterm | Individual; 10 written + 5 oral | 15 |
+| Final | Individual; 10 written + 5 oral | 15 |
+| PrairieLearn | Individual | 5 |
+| Participation (Tandem, Piazza, course evaluation, etc.) | Individual | 5 |
+| **Total** |  | **110** |
 
-Letter grades: A ≥ 93, A− ≥ 90, B+ ≥ 87, B ≥ 83, B− ≥ 80, C+ ≥ 77, C ≥ 73,
-C− ≥ 70, D ≥ 60, F < 60.
-{: .fs-3 }
+Your overall course grade is based on the total points earned from the coursework
+above, subject to the minimum-score conditions below.
+
+| Grade | Points earned | Conditions |
+|:------|--------------:|:-----------|
+| A | 96.0 points and above | All items earn at least 70% of their maximum score. |
+| A− | 92.0–95.9 points | All items earn at least 60% of their maximum score. |
+| B+ | 88.0–91.9 points | All items earn at least 50% of their maximum score. |
+| B | 84.0–87.9 points | All items earn at least 40% of their maximum score. |
+| B− | 80.0–83.9 points | All items earn at least 30% of their maximum score. |
+| C+ | 75.0–79.9 points | All items earn at least 20% of their maximum score. |
+| C | 70.0–74.9 points | All items earn at least 10% of their maximum score. |
+| C− | 60.0–69.9 points |  |
 
 ## Course policies
 
