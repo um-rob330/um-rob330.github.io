@@ -44,13 +44,13 @@ ia:
     name: 'Ashrith "Ash" Edukulla'
     email: "ashed@umich.edu"
     title: "Instructional Assistant"
-    photo: ""
+    photo: "ash.png"
 
   - id: norwood
     name: "Bailey Norwood"
     email: "bailsn@umich.edu"
     title: "Instructional Assistant"
-    photo: ""
+    photo: "bailey.png"
 
 # Rendered under the Instructional Assistants on the home page.
 # `title` is left empty rather than TODO because it's optional — the card simply
