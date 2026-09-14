@@ -146,8 +146,10 @@ Tip: If your map looks similar to the map in demo video, that’s a good result,
     - This will publish the map to the `/map` topic.
     - You can now view it in RViz (via NoMachine) or Foxglove Studio.
 
-{: .required_for_report } 
+<!--
+{: .required_for_report }
 Include a screenshot of your map. Analyze the map quality and explain why it is not ideal.
+-->
 
 
 ## Task 2.2 Localization-only
@@ -202,9 +204,11 @@ The localization node publishes both the estimated path and the reference path, 
 
 <iframe width="400" height="250" src="https://www.youtube.com/embed/TbNFS1RL5YY?si=FqanqkWABYLCqPL0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-{: .required_for_report } 
+<!--
+{: .required_for_report }
 1) Report in a table the time it takes to update the particle filter for 100, 500 and 1000 particles. Estimate the maximum number of particles your filter can support running at 10Hz.
 <br> 2) Include a screenshot comparing your estimated pose path with the reference pose path.
+-->
 
 
 ## Task 2.3 Simultaneous Localization and Mapping (SLAM)
@@ -300,9 +304,11 @@ Here are examples of "OK," "Good," and "Excellent" maps generated from the slam_
     <a href="{{ '/assets/images/checkpoints/checkpoint2-excellent-map.png' | relative_url }}" title=""><img src="{{ '/assets/images/checkpoints/checkpoint2-excellent-map.png' | relative_url }}" width="225" height="200"></a>
 </div>
 
-{: .required_for_report } 
+<!--
+{: .required_for_report }
 1) Create a block diagram showing how the SLAM system components interact.
 <br> 2) Include a screenshot of your map, and explain why your SLAM-generated map is better than the one from Task 2.1.
+-->
 
 ## Checkpoint Submission
 <br>

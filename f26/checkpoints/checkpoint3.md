@@ -120,8 +120,10 @@ After testing all features, we also provide a launch file `navigation.launch.py`
    ros2 launch foxglove_bridge foxglove_bridge_launch.xml
    ```
 
-{: .required_for_report } 
+<!--
+{: .required_for_report }
 Provide a figure showing the planned path in the map.
+-->
 
 
 ## Task 3.2 Map Exploration
@@ -203,8 +205,10 @@ After testing all features, we also provide a launch file `exploration.launch.py
     ros2 launch foxglove_bridge foxglove_bridge_launch.xml
     ```
 
-{: .required_for_report } 
+<!--
+{: .required_for_report }
 Explain the strategy used for finding frontiers and any other details about your implementation that you found important for making your algorithm work.
+-->
 
 ## Task 3.3 Localization with Estimated and Unknown Starting Position
 
@@ -212,8 +216,10 @@ For advanced competition levels, the MBot must localize itself in a known map wi
 
 Details please check competition event 2 - level 3.
 
-{: .required_for_report } 
+<!--
+{: .required_for_report }
 Explain the methods used for initial localization.
+-->
 
 ## Checkpoint Submission
 

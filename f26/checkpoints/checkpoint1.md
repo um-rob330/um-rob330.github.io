@@ -43,11 +43,13 @@ cd ~/mbot_firmware_ros/build
 sudo mbot-upload-firmware flash mbot_classic_ros.uf2
 ```
 
+<!--
 {: .required_for_report }
 Perform the calibration on each robot in your group at least 5 times, report the motor calibration with variance for the robot on a concrete floor (like in the lab).
 <br><br> Questions to Consider:
 <br> 1) How much variation is there in the calibration for a single robot? Between the team robots?
 <br> 2) What do you think is the source of variation?
+-->
 
 
 ## Task 1.2 PID Tuning
@@ -116,8 +118,10 @@ Tune the PID values to achieve a desired system response.
     sudo mbot-upload-firmware flash mbot_classic_ros.uf2
   ```
 
+<!--
 {: .required_for_report }
 Plot of time vs. velocity with robot responding to a step command of 0.5 m/s for the FF model and the controller model you chose to tune, and explain the differences in performance. Describe the controller you chose in detail and justify your choice.
+-->
 
 ## Task 1.3 Improve firmware
 
@@ -140,9 +144,11 @@ While the PID controllers help maintain accurate wheel speeds, you can add furth
   ```
 2. Plot `/gyrodom` vs `/odom` either use python script or foxglove.
 
+<!--
 {: .required_for_report }
 Add the gyrodometry calculation to the firmware and add a new publisher and publish it to a new topic named `gyrodom`. Create a plot comparing `gyrodom` vs `odom` showing the improvements, if any, of using IMU to calculate the robot odometry.
 <br><br> Describe any additional change to the firmware to improve the performance of the low level controller.
+-->
 
 ## Task 1.4 Motion Controller
 The motion controller takes a series of waypoints as input and generates velocity commands as output to navigate through them.
@@ -201,11 +207,13 @@ The PID controller in the firmware is used to control the wheel speed, while the
   - The Problem: Your robot rarely finishes exactly at (0, 0, 0). If a run ends at (0, 1, 0) and you restart without resetting, the robot still thinks it is at (0, 1, 0). When you send the first waypoint, the robot won't drive forward. It will calculate a path from (0, 1, 0) to (1, 0, 0), likely causing an unexpected turn or diagonal movement.
 
 
+<!--
 {: .required_for_report }
 Describe the final motion control algorithm you chose to use.
 <br><br> To demonstrate the performance in your report:
 <br> 1) Include a plot of your robot’s estimated pose as the robot is commanded to drive a 1m square 4 times.
 <br> 2) Include a plot of the robot’s linear and rotational velocity as it drives one loop around the square.
+-->
 
 
 ## Checkpoint Submission

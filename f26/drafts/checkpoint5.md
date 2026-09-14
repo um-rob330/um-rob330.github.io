@@ -82,10 +82,12 @@ Checkpoint 1 provides a metric distance over the same interval. Estimate the
 scale factor that best aligns your visual translation with wheel-measured
 translation over a straight segment, then apply it.
 
+<!--
 {: .required_for_report }
 Plot your monocular visual-odometry trajectory against wheel odometry for the
 same run, before and after scale correction. State the scale factor you
 recovered and how you estimated it.
+-->
 
 ### Where it fails
 
@@ -96,9 +98,11 @@ Drive the robot through each of these and record what happens:
 - **A blank wall.** Too few features to match.
 - **Fast motion.** Motion blur destroys descriptors.
 
+<!--
 {: .required_for_report }
 For each of the three cases above, describe the failure you observed and explain
 it in terms of the geometry or the image formation — not just "it drifted".
+-->
 
 ## Task 5.2 Visual SLAM: mapping and loop closure
 
@@ -122,10 +126,12 @@ it by *appearance* — a bag-of-words or learned descriptor over the image.
 3. Identify the frame at which loop closure fires. Capture the trajectory
    immediately before and immediately after.
 
+<!--
 {: .required_for_report }
 Show the trajectory before and after loop closure on the same axes. Explain what
 the optimizer changed and why the correction is distributed across the whole
 loop rather than applied only at the point of closure.
+-->
 
 ## Task 5.3 Compare V-SLAM against your LIDAR SLAM
 
@@ -141,11 +147,13 @@ which is the honest starting point for any comparison.
 2. Report the numbers with units, and state clearly what the reference actually
    is — "error relative to LIDAR SLAM" is not "error relative to truth".
 
+<!--
 {: .required_for_report }
 A table of ATE and RPE, plus two or three sentences on which system you would
 deploy in the competition environment and why. A defensible answer may well be
 "LIDAR, because the arena has low-texture walls" — the reasoning is what is
 graded, not the choice.
+-->
 
 ## Task 5.4 Modern SLAM: learned and implicit maps
 
@@ -166,6 +174,7 @@ Read enough of the following to answer the questions below.
 <!-- TODO: replace with the specific papers and sections you want read, and add
      them to the schedule as that week's reading. -->
 
+<!--
 {: .required_for_report }
 Answer both:
 <br> 1. Pick one representation from the table and compare it to your occupancy
@@ -173,6 +182,7 @@ grid on three axes: memory footprint, what queries it answers cheaply, and how i
 degrades when tracking is lost.
 <br> 2. Name one thing every method in that table still needs that the classical
 pipeline also needed. Explain why it has not gone away.
+-->
 
 ## Task 5.5 Vision-language navigation
 
@@ -223,15 +233,18 @@ language into a goal cell and handing it to the planner you already trust.
 4. Test at least four phrases, including one object that is **not** present in
    the environment.
 
+<!--
 {: .required_for_report }
 Report all four queries with the goal cell selected and whether the robot
 reached the intended object. For the absent object, state what your system did —
 and what it *should* do. A system that confidently drives to the best of several
 bad matches is worse than one that declines to move, and explaining why is part
 of this task.
+-->
 
 ### Discussion
 
+<!--
 {: .required_for_report }
 Two or three paragraphs on where this pipeline breaks, drawing on what you
 observed:
@@ -240,6 +253,7 @@ observed:
 door*"?
 <br> 3. Your semantic map is built from your V-SLAM poses. What happens to the
 grounding when tracking is lost, and how would you detect that at runtime?
+-->
 
 ## Checkpoint Submission
 
@@ -249,7 +263,7 @@ grounding when tracking is lost, and how would you detect that at runtime?
 
 Submit through [Canvas]({{ site.course.lms_url }}):
 
-1. Your report, covering every `Required for report` item above.
+<!-- 1. Your report, covering every `Required for report` item above. -->
 2. Your code for Tasks 5.1, 5.2, and 5.5.
 3. A short video of the robot reaching a goal named in natural language.
 

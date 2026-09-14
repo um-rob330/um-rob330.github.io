@@ -277,7 +277,7 @@ Test your camera by going through the following steps in order. **If any of the 
 
 
 ## Test LiDAR
-1. Run the following in the **VSCode terminal**:
+1. Run the following in the **NoMachine terminal**:
     ```bash
     ros2 launch mbot_bringup mbot_bringup.launch.py 
     ```
