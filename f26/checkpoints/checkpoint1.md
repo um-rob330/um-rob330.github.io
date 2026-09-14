@@ -217,6 +217,8 @@ Describe the final motion control algorithm you chose to use.
 
 
 ## Checkpoint Submission
+See Google Drive Checkpoint1_Submission document for more details.
+
 <br>
 <a class="image-link" href="{{ '/assets/images/checkpoints/checkpoint1-maze.png' | relative_url }}">
 <img src="{{ '/assets/images/checkpoints/checkpoint1-maze.png' | relative_url }}" alt=" " style="max-width:600px;"/>
