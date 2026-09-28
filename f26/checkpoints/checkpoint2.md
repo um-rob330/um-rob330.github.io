@@ -13,7 +13,7 @@ last_modified_at: 2026-03-30 10:09:00 -0500
 
 <!-- The Design Lab page became Checkpoint 5 (Visual SLAM / VLN), a different
      topic, so this announcement now links to a page that does not exist. It is
-     commented out rather than deleted: if the forklift design lab still runs this
+     commented out rather than deleted: if this lab still runs this
      term, restore the block below and re-create its page — the original content
      is preserved at checkpoints/_design-lab.md.bak, and its two figures are still
      in assets/images/checkpoints/ (design-lab01.png, design-lab02.png).
@@ -320,4 +320,3 @@ Demonstrate your SLAM system by mapping the maze used in Checkpoint 1. You may e
 1. Submit a screenshot of the generated map.
 2. Submit the map file itself.
 3. Submit a short description of your SLAM system, including how it works and any key observations.
-4. Submit your forklift design prototype, **it can be in any form, such as a simple sketch, a CAD file, or other representation.**
