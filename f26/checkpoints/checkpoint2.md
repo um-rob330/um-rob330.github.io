@@ -40,7 +40,7 @@ We publish the occupancy grid on the `map` frame from localization_node. Since w
 Spoiler alert, odometry is rarely the "real" pose in practice due to drift, but we will address how to handle those errors later.
 
 ### TODO
-1. Check the ROB550 GitLab `mbot_ros_labs` upstream to see if there is any new commits to pull.
+1. Check the ROB330 GitLab `mbot_ros_labs` upstream to see if there is any new commits to pull.
 2. Navigate to `mbot_ros_labs/mbot_slam/src`. For Task 2.1, start with `mapping_node.cpp`, we define the mapping node here, then complete the logic in `common/mapping.cpp` and `common/moving_laser_scan.cpp`. Search TODO in all three files.
 
 **Explanation of TODOs**
